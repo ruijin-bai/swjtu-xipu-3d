@@ -5,9 +5,9 @@
  "height_m": 12,
  "levels_source": "Google 卫星阴影：与相邻大厅同为约10-13m 的单层大跨实验厂房（阴影约为电气馆的1/3）",
  "facade": {
-  "main_color": "#8a5a48",
+  "main_color": "#7d6662",
   "secondary_color": "#dcd6c8",
-  "material": "红褐色砖墙（卫星倾斜仅见墙脚一条，细节不清），浅色金属檐口",
+  "material": "红褐色砖墙（卫星倾斜仅见墙脚一条，细节不清），浅色金属檐口；灰紫褐色面砖（东北实验区色调）",
   "window_style": "高侧窗（推测）"
  },
  "roof": {
@@ -21,7 +21,8 @@
  "confidence": "低",
  "notes": "只有卫星屋顶依据，没有找到立面照片；墙体颜色为推测性较强的值，三栋按同一批建造处理（同 磁浮试验中心）。",
  "sources": [
-  "Esri World Imagery z19 / Google 卫星 z18-20（仅用于平面、屋顶色与阴影/倾斜估高）"
+  "Esri World Imagery z19 / Google 卫星 z18-20（仅用于平面、屋顶色与阴影/倾斜估高）",
+  "B站漫步视频预览帧 f071：灰紫褐，浅灰水平线脚"
  ],
  "parts": []
 }
