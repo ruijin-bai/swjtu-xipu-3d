@@ -46,6 +46,9 @@ h3{margin:0 0 8px;font-size:11.5px;font-weight:600;color:var(--muted);letter-spa
 #info .walkhere{margin-top:10px;width:100%}
 #labels{position:fixed;inset:0;pointer-events:none;overflow:hidden}
 .lb{position:absolute;left:0;top:0;white-space:nowrap;font-size:12px;padding:2px 8px;border-radius:6px;background:rgba(18,22,30,.68);color:#f5f7fa;border:1px solid rgba(255,255,255,.14);will-change:transform}
+.lb::before{content:'';position:absolute;left:50%;top:100%;width:1px;height:12px;background:rgba(255,255,255,.75);transform:translateX(-.5px)}
+.lb::after{content:'';position:absolute;left:50%;top:calc(100% + 11px);width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.35)}
+.lb.poi::before{background:rgba(240,180,76,.95)}.lb.poi::after{background:#f0b44c}
 .lb.big{font-size:13px;font-weight:600}
 .lb.poi{background:rgba(240,180,76,.9);color:#22180a;border-color:transparent;font-size:11px}
 #help{position:fixed;left:50%;top:16px;transform:translateX(-50%);font-size:12px;color:#fff;background:rgba(0,0,0,.42);padding:6px 12px;border-radius:99px;display:none;white-space:nowrap}
@@ -757,17 +760,47 @@ let showLabels=true;
 const labelsEl=document.getElementById('labels'), LB=[];
 document.getElementById('mLabel').onclick=e=>{showLabels=!showLabels;e.target.classList.toggle('on',showLabels);labelsEl.style.display=showLabels?'':'none';};
 const PRI={library:9,teaching:6,canteen:6,sports:6,lab:5,hospital:5,service:4,admin:4,dorm:3};
-for(const b of B){if(!b.name||!b.in||/^\d+$/.test(b.name))continue;const el=document.createElement('div');el.className='lb'+((PRI[b.cat]||0)>=6?' big':'');el.textContent=b.name.replace('西南交通大学犀浦校区','').replace('西南交大犀浦','');labelsEl.appendChild(el);LB.push({el,w:new THREE.Vector3(b.c[0],b.h+4,b.c[1]),pri:PRI[b.cat]||2,far:b.cat==='dorm'?700:1900});}
-for(const p of pois){const el=document.createElement('div');el.className='lb poi';el.textContent=p.name;labelsEl.appendChild(el);LB.push({el,w:new THREE.Vector3(p.c[0],/机车|磁浮/.test(p.name)?6:7,p.c[1]),pri:/詹天佑|竢实|校史/.test(p.name)?8:2,far:/詹天佑|竢实/.test(p.name)?1300:500});}
-for(const g of (D.gates||[])){const el=document.createElement('div');el.className='lb poi';el.textContent=g.replica?'南门 · 仿唐山老校门':g.name;labelsEl.appendChild(el);LB.push({el,w:new THREE.Vector3(g.c[0],g.replica?22:15,g.c[1]),pri:9,far:1100});}
+// 锚点：多边形内离边界最远的点（polylabel 网格细分），保证落在楼顶上
+function polylabel(poly,holes){
+  const rings=[poly,...(holes||[])];
+  const segD=(x,z)=>{let m=Infinity;for(const r of rings)for(let i=0,j=r.length-1;i<r.length;j=i++){const ax=r[j][0],az=r[j][1],dx=r[i][0]-ax,dz=r[i][1]-az;const L2=dx*dx+dz*dz||1;let t=((x-ax)*dx+(z-az)*dz)/L2;t=Math.max(0,Math.min(1,t));m=Math.min(m,Math.hypot(x-ax-dx*t,z-az-dz*t));}return m;};
+  const inside=(x,z)=>pip(x,z,poly)&&!(holes||[]).some(h=>pip(x,z,h));
+  const xs=poly.map(p=>p[0]),zs=poly.map(p=>p[1]);let x0=Math.min(...xs),x1=Math.max(...xs),z0=Math.min(...zs),z1=Math.max(...zs);
+  let best=[(x0+x1)/2,(z0+z1)/2],bd=inside(best[0],best[1])?segD(best[0],best[1]):-1;
+  for(let it=0;it<4;it++){const n=12,sx=(x1-x0)/n,sz=(z1-z0)/n;
+    for(let i=0;i<=n;i++)for(let k=0;k<=n;k++){const x=x0+i*sx,z=z0+k*sz;if(!inside(x,z))continue;const d=segD(x,z);if(d>bd){bd=d;best=[x,z];}}
+    const hx=(x1-x0)/4,hz=(z1-z0)/4;x0=best[0]-hx;x1=best[0]+hx;z0=best[1]-hz;z1=best[1]+hz;}
+  return best;
+}
+function anchorOf(b){
+  if(b.parts&&b.parts.length){const top=b.parts.reduce((a,q)=>q.h>a.h?q:a);return [...polylabel(top.p),top.h];}
+  return [...polylabel(b.p,b.holes),b.h];
+}
+for(const b of B){if(!b.name||!b.in||/^\d+$/.test(b.name))continue;const el=document.createElement('div');el.className='lb'+((PRI[b.cat]||0)>=6?' big':'');el.textContent=b.name.replace('西南交通大学犀浦校区','').replace('西南交大犀浦','');labelsEl.appendChild(el);
+  const [ax,az,ah]=anchorOf(b); b.anchor=[ax,az,ah];
+  LB.push({el,w:new THREE.Vector3(ax,ah+.5,az),bid:b.i,pri:PRI[b.cat]||2,far:b.cat==='dorm'?700:1900});}
+for(const p of pois){const el=document.createElement('div');el.className='lb poi';el.textContent=p.name;labelsEl.appendChild(el);LB.push({el,w:new THREE.Vector3(p.c[0],/机车|磁浮/.test(p.name)?5:5,p.c[1]),pri:/詹天佑|竢实|校史/.test(p.name)?8:2,far:/詹天佑|竢实/.test(p.name)?1300:500});}
+for(const g of (D.gates||[])){const el=document.createElement('div');el.className='lb poi';el.textContent=g.replica?'南门 · 仿唐山老校门':g.name;labelsEl.appendChild(el);LB.push({el,w:new THREE.Vector3(g.c[0],g.replica?15.2:13.5,g.c[1]),pri:9,far:1100});}
 LB.sort((a,b)=>b.pri-a.pri);
-const v3=new THREE.Vector3();
+// 创建时测一次尺寸（此时都可见），之后不再依赖隐藏元素的 offsetWidth
+for(const L of LB){L.wpx=L.el.offsetWidth||60;L.hpx=L.el.offsetHeight||20;L.occ=false;L.el.style.display='none';}
+const v3=new THREE.Vector3(), occRay=new THREE.Raycaster(), occDir=new THREE.Vector3();
+let occT=0, occI=0;
 function updateLabels(){
   if(!showLabels) return; const W=innerWidth,H=innerHeight,boxes=[]; const walk=mode==='walk';
+  // 遮挡检测：每帧轮询少量可见标签，被其它楼挡住则隐藏
+  const now=performance.now();
+  if(now-occT>60){occT=now;let n=0;for(let k=0;k<LB.length&&n<8;k++){const L=LB[(occI+k)%LB.length];if(!L.vis)continue;n++;
+      occDir.copy(L.w).sub(camera.position);const dist=occDir.length();occDir.normalize();occRay.set(camera.position,occDir);occRay.far=dist-1.5;
+      const h=occRay.intersectObject(bMesh,false)[0];L.occ=!!h&&(L.bid==null||A.bid[h.face.a]!==L.bid);}
+    occI=(occI+8)%Math.max(1,LB.length);}
   for(const L of LB){const dist=camera.position.distanceTo(L.w);v3.copy(L.w).project(camera);
     let ok=v3.z<1&&dist<(walk?Math.min(320,L.far):L.far)&&Math.abs(v3.x)<1.05&&Math.abs(v3.y)<1.05&&dist>8;
-    if(ok){const x=(v3.x*.5+.5)*W,y=(-v3.y*.5+.5)*H,w=L.el.offsetWidth||60;const bx=[x-w/2-3,y-24,x+w/2+3,y+2];
-      if(boxes.some(o=>!(bx[2]<o[0]||bx[0]>o[2]||bx[3]<o[1]||bx[1]>o[3])))ok=false;else{boxes.push(bx);L.el.style.transform=`translate(${(x-w/2).toFixed(1)}px,${(y-22).toFixed(1)}px)`;}}
+    L.vis=ok; if(ok&&L.occ) ok=false;
+    if(ok){const x=(v3.x*.5+.5)*W,y=(-v3.y*.5+.5)*H,w=L.wpx,h=L.hpx,stem=16;
+      const bx=[x-w/2-3,y-stem-h-2,x+w/2+3,y-stem+2];
+      if(boxes.some(o=>!(bx[2]<o[0]||bx[0]>o[2]||bx[3]<o[1]||bx[1]>o[3])))ok=false;
+      else{boxes.push(bx);L.el.style.transform=`translate(${(x-w/2).toFixed(1)}px,${(y-stem-h).toFixed(1)}px)`;}}
     L.el.style.display=ok?'block':'none';}
 }
 

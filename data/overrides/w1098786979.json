@@ -5,7 +5,7 @@
  "height_m": 25,
  "levels_source": "交大设计院项目页实拍数窗：主体为6排窗（含首层），另有半地下停车层；端部塔块略高出屋面；B站漫步视频 f094/f096 远景一致",
  "facade": {
-  "main_color": "#957566",
+  "main_color": "#8c7262",
   "secondary_color": "#d9d5cc",
   "material": "褐色（偏红棕/灰紫褐）面砖满铺，阴天看起来是灰紫褐 #8a7570～#968a85，晴天呈暖棕 #c39a7d；窗框银灰/白色，首层局部浅色石材与架空柱廊",
   "window_style": "方窗（单个方窗按网格均匀成排，窗洞较小，窗框浅色），楼梯间为深色玻璃竖向条窗"
@@ -23,9 +23,11 @@
   "楼前草坪/广场有学生搭建的竹木构筑物（建造节）"
  ],
  "confidence": "中",
- "notes": "交大设计院项目页：基地8727㎡、总建筑面积30600㎡，原建筑学院与艺术与传媒学院共用，现为建筑与设计学院。B站漫步视频把该楼标为『8教人文学院』，人文学院可能也在楼内或标注有误。层数6层依据数窗，因有半地下层与坡地台阶，局部可能显示为7层。",
+ "notes": "交大设计院项目页：基地8727㎡、总建筑面积30600㎡，原建筑学院与艺术与传媒学院共用，现为建筑与设计学院。B站漫步视频把该楼标为『8教人文学院』，人文学院可能也在楼内或标注有误。层数6层依据数窗，因有半地下层与坡地台阶，局部可能显示为7层。 Commons 2023-11-16 照片(侧光)墙面中位 #7d6851；综合阴天 #8a7570、晴天 #c39a7d，主色取 #8c7262。另 Commons『艺术馆谍影』(约2008) 隔湖看为浅棕褐色，并见楼前红、黄色雕塑。",
  "sources": [
   "https://www.jiaodadesign.com/jiaoyuwenhua/155.html",
-  "https://www.bilibili.com/video/BV1hF411c7uP（videoshot 帧 f094/f096，style_guide 已用）"
+  "https://www.bilibili.com/video/BV1hF411c7uP（videoshot 帧 f094/f096，style_guide 已用）",
+  "https://commons.wikimedia.org/wiki/File:西南交通大学犀浦校区-8号教学楼_2023-11-16.jpg",
+  "https://commons.wikimedia.org/wiki/File:艺术馆谍影_-_panoramio.jpg"
  ]
 }
