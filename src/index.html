@@ -276,7 +276,6 @@ function pushExtrude(b,poly,holes,h,fh,wall,roof,win,y0=0){
   for(let i=0;i<p.length;i+=3){A.pos.push(p[i],p[i+1],p[i+2]);A.nrm.push(n[i],n[i+1],n[i+2]);const c=n[i+1]>.5?roof:wall;A.col.push(c.r,c.g,c.b);A.bid.push(b.i);A.fh.push(fh);A.win.push(win);A.top.push(h);A.sec.push(sc2.r,sc2.g,sc2.b);A.mat.push(curMat);}
   g.dispose();
 }
-const roofSpots=[];
 for(const b of B){
   const st=b.style||{}, dl=DEFAULT_LOOK[b.in?b.cat:(b.cat==='residential'?'residential':'other')]||DEFAULT_LOOK.other;
   tc.set(st.main||dl[0]); if(!st.main) tc.offsetHSL((b.seed-.5)*.03,(hash(b.id+'s')-.5)*.06,(hash(b.id+'l')-.5)*.06);
@@ -288,7 +287,6 @@ for(const b of B){
     pushExtrude(b,b.p,b.holes,baseH,baseH/lv0,tc,rc,win);
     for(const q of b.parts){ if(q.h<=baseH+.5) continue; const lv=q.levels||Math.round(q.h/4); pushExtrude(b,q.p,[],q.h,q.h/lv,tc,rc,win,baseH-.05); }
   } else pushExtrude(b,b.p,b.holes,b.h,b.h/b.levels,tc,rc,win);
-  if(b.area>350) roofSpots.push(b);
 }
 const bGeo=new THREE.BufferGeometry();
 for(const [k,n,s] of [['position','pos',3],['normal','nrm',3],['color','col',3],['aBid','bid',1],['aFh','fh',1],['aWin','win',1],['aTop','top',1],['aSec','sec',3],['aMat','mat',1]]) bGeo.setAttribute(k,new THREE.Float32BufferAttribute(A[n],s));
@@ -372,18 +370,6 @@ const bMesh=new THREE.Mesh(bGeo,bMat); bMesh.castShadow=bMesh.receiveShadow=true
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('color',new THREE.Float32BufferAttribute(col,4));
   const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({vertexColors:true,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-14,polygonOffsetUnits:-28}));m.renderOrder=1;scene.add(m);
 }
-// 屋顶设备
-{ const items=[];
-  for(const b of roofSpots){const n=Math.min(14,Math.round(b.area/420));const xs=b.p.map(p=>p[0]),zs=b.p.map(p=>p[1]);const x0=Math.min(...xs),x1=Math.max(...xs),z0=Math.min(...zs),z1=Math.max(...zs);
-    let k=0,t=0;while(k<n&&t<n*8){t++;const x=x0+rnd()*(x1-x0),z=z0+rnd()*(z1-z0);const s=1.4+rnd()*(k===0?5:2.5);
-      const inB=(X,Z)=>pip(X,Z,b.p)&&!(b.holes||[]).some(h=>pip(X,Z,h));
-      if(inB(x,z)&&inB(x+s,z+s)&&inB(x-s,z-s)&&inB(x+s,z-s)&&inB(x-s,z+s)){items.push([x,b.h,z,s,k===0?2.6+rnd()*1.5:.9+rnd()*1.2,rnd()]);k++;}}}
-  const im=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1).translate(0,.5,0),new THREE.MeshStandardMaterial({color:0xc9c9c6,roughness:.7}),Math.max(1,items.length));
-  const M=new THREE.Matrix4(),q=new THREE.Quaternion(),c=new THREE.Color();
-  items.forEach((it,i)=>{M.compose(new THREE.Vector3(it[0],it[1],it[2]),q,new THREE.Vector3(it[3],it[4],it[3]*(.6+it[5]*.8)));im.setMatrixAt(i,M);im.setColorAt(i,c.setHSL(.1,.03,.68+it[5]*.18));});
-  im.count=items.length; im.castShadow=true;im.receiveShadow=true;scene.add(im);
-}
-
 const _bg=new Map();for(const b of B){const xs=b.p.map(p=>p[0]),zs=b.p.map(p=>p[1]);for(let gx=Math.floor(Math.min(...xs)/40);gx<=Math.floor(Math.max(...xs)/40);gx++)for(let gz=Math.floor(Math.min(...zs)/40);gz<=Math.floor(Math.max(...zs)/40);gz++){const k=gx+','+gz;if(!_bg.has(k))_bg.set(k,[]);_bg.get(k).push(b);}}
 const nearBridge=(x,z)=>(D.bridges||[]).some(br=>br.p.some((q,i)=>{if(!i)return false;const a=br.p[i-1];const dx=q[0]-a[0],dz=q[1]-a[1];const L2=dx*dx+dz*dz||1;let t=((x-a[0])*dx+(z-a[1])*dz)/L2;t=Math.max(0,Math.min(1,t));return Math.hypot(x-a[0]-dx*t,z-a[1]-dz*t)<br.w/2+(br.group==='hongqiao'?9:4);}));
 const blockedB=(x,z)=>{const L=_bg.get(Math.floor(x/40)+','+Math.floor(z/40));return !!L&&L.some(b=>pip(x,z,b.p));};
