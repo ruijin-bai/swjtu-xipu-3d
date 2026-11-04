@@ -125,7 +125,7 @@ const sArea=p=>{let s=0;for(let i=0,j=p.length-1;i<p.length;j=i++)s+=p[j][0]*p[i
 const CATN={teaching:'教学楼',lab:'实验/科研楼',library:'图书馆',canteen:'食堂',dorm:'学生宿舍',sports:'体育场馆',service:'生活服务',admin:'行政后勤',hospital:'医疗',other:'建筑',residential:'校外住宅'};
 // 未经照片核实的楼：按成都高校常见外立面取色（浅灰/米白/浅砖），每栋轻微变化
 // 风格调研：教学/实验楼多为赭红砖配浅灰混凝土线脚；宿舍浅灰白；屋顶浅灰平顶。[主色, 窗型, 材质 0涂料/面砖 1砖 2金属玻璃]
-const DEFAULT_LOOK={teaching:['#965f55',0,1],lab:['#93604f',0,1],library:['#d6d0c4',2,0],canteen:['#8f5a4e',2,1],dorm:['#c9c6bf',0,0],sports:['#d8dad8',3,2],service:['#8f5d50',2,1],admin:['#965f55',0,1],hospital:['#e2ddd4',0,0],other:['#c4bfb6',0,0],residential:['#d2cec6',0,0]};
+const DEFAULT_LOOK={teaching:['#965f55',0,1],lab:['#93604f',0,1],library:['#d6d0c4',2,0],canteen:['#8f5a4e',2,1],dorm:['#c9c6bf',0,0],sports:['#d8dad8',3,2],service:['#8f5d50',2,1],admin:['#965f55',0,1],hospital:['#e2ddd4',0,0],other:['#8f5a4e',0,1],residential:['#d2cec6',0,0],outside:['#c9c5bd',0,0]};
 const TRIM='#cfcac2';
 const B=D.buildings.map((b,i)=>Object.assign(b,{i,seed:hash(b.id)}));
 
@@ -282,7 +282,7 @@ function pushExtrude(b,poly,holes,h,fh,wall,roof,win,y0=0){
   g.dispose();
 }
 for(const b of B){
-  const st=b.style||{}, dl=DEFAULT_LOOK[b.in?b.cat:(b.cat==='residential'?'residential':'other')]||DEFAULT_LOOK.other;
+  const st=b.style||{}, dl=DEFAULT_LOOK[b.in?b.cat:(b.cat==='residential'?'residential':'outside')]||DEFAULT_LOOK.other;
   tc.set(st.main||dl[0]); if(!st.main) tc.offsetHSL((b.seed-.5)*.03,(hash(b.id+'s')-.5)*.06,(hash(b.id+'l')-.5)*.06);
   if(st.roof) rc.set(st.roof); else if(b.roofSat){rc.set(b.roofSat).multiplyScalar(1.45);rc.r=Math.min(1,rc.r);rc.g=Math.min(1,rc.g);rc.b=Math.min(1,rc.b);} else {rc.set('#9c9b96');rc.offsetHSL(0,0,(b.seed-.5)*.08);}
   const win=st.win!=null?st.win:dl[1];
@@ -317,17 +317,20 @@ bMat.onBeforeCompile=sh=>{
     vec2 tg=normalize(vec2(-vWN.z,vWN.x)+1e-5); float along=dot(vWP.xz,tg);
     float fy=fract(vWP.y/vFh), fl=floor(vWP.y/vFh);
     float topZone=step(vTop-1.0,vWP.y);
-    float glass=0., frame=0., cellW=3.6;
-    if(vWin<.5){ float fx=fract(along/cellW); glass=step(.30,fy)*step(fy,.80)*step(.22,fx)*step(fx,.78);
-                 frame=step(.27,fy)*step(fy,.83)*step(.19,fx)*step(fx,.81)-glass; }
-    else if(vWin<1.5){ cellW=2.4; float fx=fract(along/cellW); glass=step(.10,fy)*step(fy,.90)*step(.32,fx)*step(fx,.68);
-                 frame=step(.08,fy)*step(fy,.92)*step(.29,fx)*step(fx,.71)-glass; }
-    else if(vWin<2.5){ cellW=1.5; float fx=fract(along/1.5); glass=step(.36,fy)*step(fy,.82); frame=glass*step(fx,.04); glass*=1.-step(fx,.04); }
-    else { cellW=1.5; float fx=fract(along/1.5); glass=step(.05,fy)*(1.-step(fx,.035)); frame=(1.-glass)*step(.05,fy); }
-    if(fl<.5&&vWin<2.5){ float fx=fract(along/cellW); float door=step(.93,hh(vec3(floor(along/cellW),bidI,7.)));
-      glass=max(glass*0.,step(.22,fy)*step(fy,.86)*step(.16,fx)*step(fx,.84)); if(door>.5){glass=step(.0,fy)*step(fy,.82)*step(.08,fx)*step(fx,.92);}
-      frame=step(.19,fy)*step(fy,.89)*step(.13,fx)*step(fx,.87)-glass; if(door>.5) frame=step(fy,.86)*step(.05,fx)*step(fx,.95)-glass; }
-    glass*=wall*(1.-topZone)*step(fl<.5?.0:1.0,vWP.y); frame*=wall*(1.-topZone)*step(fl<.5?.0:1.0,vWP.y);
+    float cellW=3.6, gx0=.22,gx1=.78,gy0=.30,gy1=.80, punched=1.;
+    if(vWin>.5&&vWin<1.5){cellW=2.4;gx0=.32;gx1=.68;gy0=.10;gy1=.90;}
+    else if(vWin>1.5){cellW=1.5;gx0=.0;gx1=1.;gy0=vWin<2.5?.36:.05;gy1=vWin<2.5?.82:1.;punched=0.;}
+    float fx=fract(along/cellW), door=0.;
+    if(fl<.5&&vWin<2.5){ door=step(.93,hh(vec3(floor(along/cellW),bidI,7.)));
+      if(door>.5){gx0=.08;gx1=.92;gy0=.0;gy1=.80;} else {gx0=.16;gx1=.84;gy0=.22;gy1=.86;} punched=1.; }
+    float inG=step(gx0,fx)*step(fx,gx1)*step(gy0,fy)*step(fy,gy1);
+    float u=(fx-gx0)/max(gx1-gx0,1e-3), v=(fy-gy0)/max(gy1-gy0,1e-3);
+    float glass=inG, frame=0.;
+    if(punched>.5){ float e=.025; frame=step(gx0-e,fx)*step(fx,gx1+e)*step(gy0-e,fy)*step(fy,gy1+e)-inG; }
+    else if(vWin<2.5){ frame=inG*step(fx,.04); glass=inG*(1.-step(fx,.04)); }
+    else { glass=step(.05,fy)*(1.-step(fx,.035)); frame=(1.-glass)*step(.05,fy); }
+    float onWall=wall*(1.-topZone)*step(fl<.5?.0:1.0,vWP.y);
+    glass*=onWall; frame*=onWall;
     float cellId=floor(along/cellW);
     float r=hh(vec3(fl,cellId,bidI));
     float dcam=length(vWP-cameraPosition);
@@ -342,20 +345,75 @@ bMat.onBeforeCompile=sh=>{
     wc=mix(wc,vSec,topZone*wall*.9);                                          // 女儿墙压顶
     wc*=mix(.62,1.,smoothstep(.0,1.0,vWP.y))*mix(.80,1.,smoothstep(0.,6.,vWP.y)*wall+(1.-wall));
     wc*=mix(1.,.9+.12*vn(vWP.xz*.8),1.-wall);
-    vec3 gcol=mix(vec3(.12,.15,.18),vec3(.20,.24,.27),r); if(vWin>2.5) gcol=vec3(.18,.24,.28);
+    float near=smoothstep(260.,60.,dcam);
+    // 窗台与窗台下阴影（仅洞口窗）
+    float sill=0., sillSh=0., ac=0., acSh=0., canopy=0., canSh=0.;
+    if(punched>.5&&door<.5){ sill=step(gx0-.045,fx)*step(fx,gx1+.045)*step(gy0-.075,fy)*step(fy,gy0-.025)*onWall;
+      sillSh=step(gx0-.04,fx)*step(fx,gx1+.04)*step(gy0-.12,fy)*step(fy,gy0-.075)*onWall; }
+    // 宿舍空调外机：挂在窗洞右侧下方，对齐窗格
+    if(vSt.g>.5&&punched>.5&&fl>.5&&hh(vec3(cellId,fl,bidI+3.))>.45){
+      float ax0=min(gx1+.04,.80), ax1=min(ax0+.62/cellW,.985);
+      ac=step(ax0,fx)*step(fx,ax1)*step(.03,fy)*step(fy,.22)*onWall; acSh=step(ax0,fx)*step(fx,ax1)*step(-.0,fy)*step(fy,.03)*onWall; }
+    // 门洞雨棚
+    if(door>.5){ canopy=step(.02,fx)*step(fx,.98)*step(.82,fy)*step(fy,.88)*onWall; canSh=inG*step(.70,v); }
+    // 室内（白天）：上亮下暗、少量窗帘
+    float curtain=0.;
+    float ch=hh(vec3(cellId,fl,bidI+11.));
+    if(punched>.5&&ch<.26) curtain=step(u,.28)+step(.72,u);
+    float reveal=(step(.86,v)+step(u,.07))*punched;              // 窗洞上沿与左侧的阴影（凹进感）
+    vec3 gcol=mix(vec3(.10,.13,.16),vec3(.21,.25,.28),r)*mix(.75,1.15,v); if(vWin>2.5) gcol=vec3(.18,.24,.28)*mix(.85,1.1,v);
+    gcol=mix(gcol,vec3(.55,.50,.42)*.55,clamp(curtain,0.,1.)*.85);
+    gcol*=mix(1.,.45,clamp(reveal,0.,1.)*near); gcol*=mix(1.,.55,canSh);
     vec3 fcol=vMat>.5&&vMat<1.5? vec3(.86,.86,.84) : mix(vec3(.82,.82,.80),vSec,.4);
     diffuseColor.rgb=mix(wc,gcol,glass); diffuseColor.rgb=mix(diffuseColor.rgb,fcol,clamp(frame,0.,1.));
+    diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.86,.85,.82),sill*near); diffuseColor.rgb*=mix(1.,.72,sillSh*near);
+    float grille=step(.5,fract(fy*vFh*9.));
+    diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.84,.84,.81)*(.9+.1*grille),ac*near); diffuseColor.rgb*=mix(1.,.65,acSh*near);
+    diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.80,.80,.78),canopy);
+    // 夜间亮灯参数：天花板附近最亮，向下衰减；暖/冷光；窗帘透出偏暗暖光
+    float isLit=step(r,vSt.r);
+    vec3 litC=hh(vec3(cellId,fl,bidI+5.))<.3? vec3(.85,.92,1.) : vec3(1.,.80,.52);
+    litC=mix(litC,vec3(1.,.72,.45)*.55,clamp(curtain,0.,1.));
+    float litE=isLit*glass*(.35+.85*smoothstep(.0,1.,v))*(1.-.6*clamp(reveal,0.,1.))*(.75+.5*hh(vec3(cellId,fl,2.)));
     diffuseColor.rgb=mix(diffuseColor.rgb,vec3(1.,.86,.45),vSt.b*.35);
-    float gls=glass;`)
+    float gls=glass*(1.-clamp(curtain,0.,1.)*.7);`)
    .replace('#include <roughnessmap_fragment>',`#include <roughnessmap_fragment>
     roughnessFactor=mix(roughnessFactor,.06,gls); if(vMat>1.5) roughnessFactor=mix(roughnessFactor,.35,1.-gls);`)
    .replace('#include <metalnessmap_fragment>',`#include <metalnessmap_fragment>
     metalnessFactor=mix(metalnessFactor,.9,gls); if(vMat>1.5) metalnessFactor=max(metalnessFactor,.45*wall+.5*(1.-wall));`)
    .replace('#include <emissivemap_fragment>',`#include <emissivemap_fragment>
-    float lit=step(r,vSt.r)*gls; totalEmissiveRadiance+=vec3(1.,.80,.52)*lit*uNight*1.5*(.7+.3*hh(vec3(cellId,fl,2.)));
+    totalEmissiveRadiance+=litC*litE*uNight*1.6;
     totalEmissiveRadiance+=vec3(1.,.8,.35)*vSt.b*(.18+.1*sin(uTime*4.));`);
 };
 const bMesh=new THREE.Mesh(bGeo,bMat); bMesh.castShadow=bMesh.receiveShadow=true; scene.add(bMesh);
+{ // 楼名：贴在最长外墙上（高楼竖排、矮楼横排；砖墙白字、浅墙深字）
+  const NAMED=new Set(['teaching','lab','library','admin','canteen','sports','service','hospital']);
+  const cleanName=n=>n.replace('西南交通大学犀浦校区','').replace('西南交大犀浦','').replace(/（.*?）|\(.*?\)/g,'').trim();
+  for(const b of B){ if(!b.in||!b.name||!NAMED.has(b.cat)||b.h<8) continue;
+    const name=cleanName(b.name); if(!name||name.length>9) continue;
+    const p=b.p; let best=null;
+    for(let i=0;i<p.length;i++){const a=p[i],c=p[(i+1)%p.length];const L=Math.hypot(c[0]-a[0],c[1]-a[1]);if(!best||L>best.L)best={a,c,L};}
+    if(!best||best.L<12) continue;
+    const dx=(best.c[0]-best.a[0])/best.L, dz=(best.c[1]-best.a[1])/best.L; let nx=-dz,nz=dx;
+    const mx=(best.a[0]+best.c[0])/2, mz=(best.a[1]+best.c[1])/2; if(pip(mx+nx*1.5,mz+nz*1.5,p)){nx=-nx;nz=-nz;}
+    const wallH=b.parts&&b.parts.length?Math.min(...b.parts.map(q=>q.h)):b.h;
+    const vertical=wallH>=18&&name.length<=6, ch=vertical?Math.min(2.2,wallH*.07):Math.min(1.8,Math.max(1.1,wallH*.09));
+    const wcol=new THREE.Color((b.style&&b.style.main)||'#8f5a4e'); const lum=wcol.r*.3+wcol.g*.59+wcol.b*.11;
+    const fg=lum<.35?'#f3f0e8':'#3a3633';
+    const chars=[...name]; const cw=256, W=vertical?cw:cw*chars.length, H=vertical?cw*chars.length:cw;
+    const cv=document.createElement('canvas'); cv.width=W; cv.height=H; const x=cv.getContext('2d');
+    x.fillStyle=fg; x.font=`bold ${cw*.78}px "Noto Serif CJK SC","Songti SC","SimSun","WenQuanYi Zen Hei",serif`; x.textAlign='center'; x.textBaseline='middle';
+    x.lineJoin='round'; x.lineWidth=cw*.06; x.strokeStyle=fg;
+    chars.forEach((c,i)=>{const X=vertical?cw/2:cw*(i+.5),Y=vertical?cw*(i+.5):cw/2+6;x.strokeText(c,X,Y);x.fillText(c,X,Y);});
+    const tex=new THREE.CanvasTexture(cv); tex.colorSpace=THREE.SRGBColorSpace; tex.anisotropy=8;
+    const mat=new THREE.MeshStandardMaterial({map:tex,transparent:true,alphaTest:.4,roughness:.5,metalness:.2,polygonOffset:true,polygonOffsetFactor:-2});
+    const gw=vertical?ch:ch*chars.length, gh=vertical?ch*chars.length:ch;
+    const m=new THREE.Mesh(new THREE.PlaneGeometry(gw,gh),mat);
+    const along=vertical?Math.min(best.L*.5-3,best.L*.5-gw):0, off=Math.max(0,along)*(hash(b.id+'n')<.5?-1:1);
+    const cy=vertical?wallH-gh/2-wallH*.12:wallH-ch*.9-.6;
+    m.position.set(mx+dx*off+nx*.08,cy,mz+dz*off+nz*.08); m.lookAt(m.position.x+nx,cy,m.position.z+nz); scene.add(m);
+  }
+}
 { // 内院：小天井/明确为中庭的加玻璃采光顶；大内院铺地
   const gridTex=canvasTex(256,(x,s)=>{x.fillStyle='#ffffff';x.fillRect(0,0,s,s);x.strokeStyle='#4a5258';x.lineWidth=6;for(let i=0;i<=4;i++){x.beginPath();x.moveTo(i*s/4,0);x.lineTo(i*s/4,s);x.stroke();x.beginPath();x.moveTo(0,i*s/4);x.lineTo(s,i*s/4);x.stroke();}},1/6);
   const glassM=new THREE.MeshStandardMaterial({color:0x8fa4ae,map:gridTex,metalness:.85,roughness:.12,envMapIntensity:1.2});
@@ -530,7 +588,7 @@ const pois=D.pois.filter(p=>LANDMARK.test(p.name));
 let selected=-1;
 const LITR={dorm:.75,library:.85,teaching:.45,lab:.5,canteen:.6,residential:.6};
 function updateState(){
-  for(const b of B){const i=b.i*4;stateData[i]=Math.round((LITR[b.cat]||.3)*255);stateData[i+2]=b.i===selected?255:0;stateData[i+3]=255;}
+  for(const b of B){const i=b.i*4;stateData[i]=Math.round((LITR[b.cat]||.3)*255);stateData[i+1]=(b.cat==='dorm'||b.cat==='residential')?255:0;stateData[i+2]=b.i===selected?255:0;stateData[i+3]=255;}
   stateTex.needsUpdate=true;
 }
 
