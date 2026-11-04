@@ -16,3 +16,7 @@ data/sat/landcover.png
 *.mp4
 node_modules/
 __pycache__/
+# 子代理下载的原始资料目录与第三方 PNG
+data/refs/more/
+data/refs/**/*.png
+!data/refs/plan_labeled.png
