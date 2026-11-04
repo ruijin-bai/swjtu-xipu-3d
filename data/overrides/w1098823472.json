@@ -1,0 +1,32 @@
+{
+  "osm_id": "w1098823472",
+  "name": "体育馆南侧弧形连廊/附属（未命名）",
+  "levels": 2,
+  "height_m": 8,
+  "levels_source": "卫星：位于体育馆与四个场馆之间的弧形窄条，屋面深灰；航拍帧18/19中为低矮连廊（低）",
+  "facade": {
+    "main_color": "#d4d4d0",
+    "secondary_color": "#8f969b",
+    "material": "浅灰墙+玻璃",
+    "window_style": "带形窗",
+    "window_color": "#6b7780"
+  },
+  "roof": {
+    "type": "平顶",
+    "color": "#75736d",
+    "features": "深灰平屋面"
+  },
+  "features": [
+    "连接体育馆与游泳馆/羽毛球馆/乒乓球馆/健美操馆的弧形连廊"
+  ],
+  "confidence": "低",
+  "notes": "",
+  "sources": [
+    "https://www.bilibili.com/video/BV1Yv4y1P7Yn",
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/satB_sports.jpg"
+  ],
+  "parts": []
+}

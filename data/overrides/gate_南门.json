@@ -1,0 +1,75 @@
+{
+ "osm_id": "n2178309445",
+ "name": "南门（仿唐山路矿学堂老校门）",
+ "is_tangshan_replica": true,
+ "position": {
+  "lat": 30.7629679,
+  "lon": 103.9897905,
+  "local_xz": [
+   508.0,
+   341.9
+  ],
+  "osm_note": "barrier=gate 节点位于承唐路（w207570521）上；门体横跨承唐路"
+ },
+ "orientation": {
+  "road_axis_vector_xz": [
+   0.631,
+   0.776
+  ],
+  "gate_long_axis_vector_xz": [
+   0.776,
+   -0.631
+  ],
+  "front_faces_bearing_deg": 141,
+  "desc": "承唐路在门处为西北-东南走向；门体长轴为东北-西南走向，垂直于道路。正面（“交通大学”）朝东南、朝校外；背面（“唐山路礦學堂”）朝西北、朝校内（背面照片拱洞中可见校外街道与商铺）"
+ },
+ "form": "三拱凯旋门式牌坊（西式古典门楼）：中间一个大半圆拱（车行，可并行两辆汽车），两侧各一个小半圆拱（非机动车/行人），小拱外侧为较低的翼墙并以涡卷（卷草）收头",
+ "levels": null,
+ "height_m": 14,
+ "width_m": 22,
+ "depth_m": 4,
+ "dimensions_detail": {
+  "reported": "成都晚报 2011-03 报道：高约20米，宽约45米（可能含旗杆/两侧附属墙，或为粗估）",
+  "photo_estimate": "按正面照片中行人（约1.65m）比例估算：门体总宽约22m，至顶部阶梯形压顶约13.5-14m（顶部正中另有细旗杆）；中拱净宽约6.5m、拱顶净高约8.5m；侧拱净宽约2.2-2.5m、净高约4.7m；中拱两侧墩柱各宽约3.5m",
+  "use": "建模建议用照片估算值；depth 4m 为无依据的估计"
+ },
+ "columns": "正面中拱两侧各一对（2根）西式圆柱（托斯卡纳式，粗壮、无凹槽），每面共4根；背面同样4根成对壁柱；柱上方的阁楼层（attic）各有一块方形石台，刻交大校徽浮雕",
+ "attic": "中拱上方为横向门楣+阁楼层，正中嵌白色石材匾额；顶部为阶梯形（两级）压顶，压顶两端（对柱正上方）各有一个凸起的小方墩",
+ "text": {
+  "front": "交通大學（正面，朝校外；匾额白底，报道称金色大字，照片中字为深色/暗金）",
+  "back": "唐山路礦學堂（背面，朝校内；白/浅灰底黑色字）",
+  "other": "背面底部刻有唐山市委、市政府捐建说明（博客转述，未见照片）"
+ },
+ "facade": {
+  "main_color": "#9c7d68",
+  "secondary_color": "#866a58",
+  "material": "褐色花岗岩（剁斧/粗面石材，石块分缝明显）",
+  "window_style": "无窗；三个半圆拱洞，拱券有放射状石块+拱心石",
+  "window_color": null,
+  "panel_color": "#b6b9b9",
+  "text_color": "#1e1e1e"
+ },
+ "roof": {
+  "type": "平顶（阶梯形压顶）",
+  "color": "#5e5049",
+  "features": "压顶两端凸起方墩；顶部正中细旗杆"
+ },
+ "features": [
+  "门洞内（中拱正中）设门卫岗亭，两侧拱洞设伸缩门/道闸（照片）",
+  "两侧小拱外为降低高度的翼墙，以弧形涡卷过渡",
+  "整体为2011年前建成（成都晚报2011-03-24报道时已建好），唐山市政府出资捐建"
+ ],
+ "confidence": "高（形式、文字、哪一个门）/ 中（尺寸：报道值与照片估算值不一致）/ 中（颜色：背面照片为侧逆光，正面照片调色过亮）",
+ "notes": "确认仿唐山老校门的是南门（新浪博客「犀浦校区标志性建筑」：唐山市政府捐建与老唐院大门造型一致的大门，放在交流带南端作为南大门；Commons 'Southern Gate ... THE BACK SIDE' 照片背面为“唐山路礦學堂”）。门体比报道的 45m×20m 明显小，建议按 22m×14m 建。正面照片来自 B 站视频封面（调色明显，颜色不可用）；颜色取自 Commons 背面照片。",
+ "sources": [
+  "https://blog.sina.com.cn/s/blog_657421f30100t2xz.html",
+  "https://paper.sciencenet.cn/htmlnews/2011/3/245442.shtm",
+  "https://commons.wikimedia.org/wiki/File:Southern_Gate_of_Southwest_Jiaotong_University_(the_Main_Xipu_Campus)_THE_BACK_SIDE.jpg",
+  "https://www.bilibili.com/video/BV1Re411s7M1 (封面图：南门正面)",
+  "https://zh.wikipedia.org/wiki/西南交通大学"
+ ],
+ "local_refs": [
+  "data/refs/gate/south_back_s.jpg",
+  "data/refs/gate/south_front_s.jpg"
+ ]
+}

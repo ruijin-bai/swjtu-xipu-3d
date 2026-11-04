@@ -1,0 +1,32 @@
+{
+  "osm_id": "w1098797675",
+  "name": "三食堂（粟园）",
+  "levels": 3,
+  "height_m": 14,
+  "levels_source": "航拍 BV1HGNUzTEze 帧13 背景（二食堂西北，铁路侧）目测约3层（低）",
+  "facade": {
+    "main_color": "#7a4a42",
+    "secondary_color": "#b9b8b4",
+    "material": "砖红色墙体，浅灰屋檐",
+    "window_style": "带形窗",
+    "window_color": "#55606a"
+  },
+  "roof": {
+    "type": "平顶（东侧弧形边）",
+    "color": "#888883",
+    "features": "深灰平屋面，东缘为弧形"
+  },
+  "features": [
+    "沿西侧铁路/道路的服务带，北接3号服务区"
+  ],
+  "confidence": "低",
+  "notes": "",
+  "sources": [
+    "https://www.bilibili.com/video/BV1HGNUzTEze (videoshot 帧13)",
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/satC_mid.jpg"
+  ],
+  "parts": []
+}

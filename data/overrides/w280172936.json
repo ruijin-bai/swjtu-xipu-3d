@@ -1,0 +1,30 @@
+{
+ "osm_id": "w280172936",
+ "name": "风洞实验室（XNJD-3 风洞）",
+ "levels": null,
+ "height_m": 20,
+ "levels_source": "土木学院新闻照「XNJD-3风洞」正立面：下部2层灰色附房（约8-9m）+上部高大实验大厅，按人高比例估总高约18-22m",
+ "facade": {
+  "main_color": "#7a7f82",
+  "secondary_color": "#b0474b",
+  "material": "上部大厅为深灰色半透明板材/金属幕墙板，等距竖向壁柱交替为红色与浅灰色；下部为灰色抹灰2层附房，开横向窗；顶部浅灰色檐口压顶",
+  "window_style": "上部：大面积灰色幕墙板（竖向分格，局部方窗）；下部：横向长方窗"
+ },
+ "roof": {
+  "type": "平顶/低坡金属屋面",
+  "color": "#5e5650",
+  "features": "卫星可见深灰褐色长条屋面，东端有一段浅色/玻璃采光段"
+ },
+ "features": [
+  "长约120m的东西向长条大厅（世界最大的边界层风洞之一 XNJD-3）",
+  "长立面中部有黄色大字「XNJD-3 风洞」",
+  "红色竖向壁柱是主要识别点"
+ ],
+ "confidence": "中",
+ "notes": "照片拍摄于阴天，取色为中间值；未见屋面细节，屋顶类型按卫星推断。",
+ "sources": [
+  "https://civil.swjtu.edu.cn/__local/C/A9/51/E24F770DE44E24CACEEFE0AC3DE_C14BD892_33C3D.jpg",
+  "Esri World Imagery z19 / Google 卫星 z18-20（仅用于平面、屋顶色与阴影/倾斜估高）"
+ ],
+ "parts": []
+}

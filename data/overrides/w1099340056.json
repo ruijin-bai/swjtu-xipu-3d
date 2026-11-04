@@ -1,0 +1,36 @@
+{
+  "osm_id": "w1099340056",
+  "name": "天佑斋2号楼",
+  "levels": 6,
+  "height_m": 20.5,
+  "levels_source": "航拍 BV1HGNUzTEze 缩略图帧4/8/9/10（约0:22-0:55）数窗约6行，分辨率480x270，±1层",
+  "facade": {
+    "main_color": "#86827f",
+    "secondary_color": "#6e3f3c",
+    "material": "深灰色（略带暖调）面砖/涂料外墙，端山墙与楼梯间竖向体块为暗红/砖红色",
+    "window_style": "方窗规则网格（宿舍单元窗+小阳台），窗洞深色",
+    "window_color": "#4f5258"
+  },
+  "roof": {
+    "type": "平顶",
+    "color": "#71716c",
+    "features": "深灰平屋面，女儿墙，散布设备/水箱"
+  },
+  "features": [
+    "与1号楼合围成大院落（西南），南侧正对南区体育场",
+    "各转角与端部的楼梯间凸出体块为砖红色竖条，在航拍中非常醒目",
+    "与天佑斋1-4号同批（南区，外观一致：深灰墙+红色端墙）"
+  ],
+  "confidence": "中（形状、颜色批次中；层数中）",
+  "notes": "天佑斋1-4号楼为同一批：轮廓均为大尺度围合/折线形（2585-3786m²），航拍中统一为深灰墙+暗红端墙，与中区浅灰白色宿舍明显不同。卫星屋面1/2号偏深灰，3/4号略浅（可能为翻新），立面一致。核验栋：1/2号（帧8-10可见院落与南区体育场）；3/4号同1/2号。",
+  "sources": [
+    "https://www.bilibili.com/video/BV1HGNUzTEze (videoshot 帧4,8,9,10,14,15)",
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/A_13_15_9_zoom.jpg",
+    "data/refs/aerial2/south/A_4_5_zoom.jpg",
+    "data/refs/aerial2/south/satD_south.jpg"
+  ],
+  "parts": []
+}

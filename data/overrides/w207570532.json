@@ -1,0 +1,36 @@
+{
+  "osm_id": "w207570532",
+  "name": "体育馆",
+  "levels": null,
+  "height_m": 26,
+  "levels_source": "航拍 BV1Yv4y1P7Yn 帧18-21/48（“UFO Stadium 飞碟体育馆”）按直径约100m比例估算：檐口约18m，屋顶中心约26m（低）",
+  "facade": {
+    "main_color": "#d9dadb",
+    "secondary_color": "#9aa3aa",
+    "material": "白/浅灰色圆柱形墙体，外挑飞碟状金属屋面檐口；底部为平台与台阶",
+    "window_style": "环形带形窗（檐下一圈连续窗带）+底层玻璃",
+    "window_color": "#6f7a82"
+  },
+  "roof": {
+    "type": "飞碟形（扁圆锥/穹顶）金属屋面",
+    "color": "#c4c6c8",
+    "features": "浅银灰色金属屋面，中央有圆形采光顶（卫星中呈深色圆，夜景灯光为浅蓝），檐口外挑一圈"
+  },
+  "features": [
+    "平面近椭圆（约95x114m），外号“飞碟体育馆”",
+    "南侧以弧形连廊（w1098823472）连接游泳馆、羽毛球馆、乒乓球馆、健美操馆",
+    "西侧为主体育场"
+  ],
+  "confidence": "中（形态颜色中，高度低）",
+  "notes": "高度为比例估计，无官方数据。",
+  "sources": [
+    "https://www.bilibili.com/video/BV1Yv4y1P7Yn (videoshot 帧10,18,19,21,48)",
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/B_18_21.jpg",
+    "data/refs/aerial2/south/B_41_48.jpg",
+    "data/refs/aerial2/south/satB_sports.jpg"
+  ],
+  "parts": []
+}

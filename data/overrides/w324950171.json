@@ -1,0 +1,30 @@
+{
+  "osm_id": "w324950171",
+  "name": "北区校车站",
+  "levels": 1,
+  "height_m": 5,
+  "levels_source": "卫星：长条形单层候车雨棚（低）",
+  "facade": {
+    "main_color": "#b8bcbe",
+    "secondary_color": "#6f7478",
+    "material": "钢结构雨棚，侧面开敞",
+    "window_style": "开敞无窗"
+  },
+  "roof": {
+    "type": "单坡/弧形雨棚",
+    "color": "#9fb0b8",
+    "features": "浅蓝灰色半透明/彩钢雨棚屋面"
+  },
+  "features": [
+    "北区校车站，长约40m的候车棚"
+  ],
+  "confidence": "中（形态）/低（高度）",
+  "notes": "当前模型3层明显偏高，建议1层约5m。",
+  "sources": [
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/p11.jpg"
+  ],
+  "parts": []
+}

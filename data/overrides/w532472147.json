@@ -1,0 +1,29 @@
+{
+ "osm_id": "w532472147",
+ "name": "电气馆",
+ "levels": 9,
+ "height_m": 38,
+ "levels_source": "Esri 卫星倾斜立面数窗带约9层 + Google 卫星阴影长度约为相邻实验大厅（约12m）的3倍；国家工程实验室照片背景中可见其褐色砖高楼高出树冠很多",
+ "facade": {
+  "main_color": "#7f5848",
+  "secondary_color": "#c8c0b2",
+  "material": "褐红色面砖（偏暗褐），浅色水平窗间带",
+  "window_style": "带形窗/成排方窗（卫星倾斜可见规则横向窗带）"
+ },
+ "roof": {
+  "type": "平顶",
+  "color": "#c8c0b2",
+  "features": "浅米灰平屋面，L形平面；屋顶中部有楼梯间/机房小体块与设备"
+ },
+ "features": [
+  "北区实验区中最高的建筑（板式高层），L形",
+  "东侧紧邻磁浮试验中心大厅"
+ ],
+ "confidence": "低",
+ "notes": "没有找到正面照片，层数与颜色主要靠卫星倾斜/阴影和远景照片，误差可能±2层。",
+ "sources": [
+  "Esri World Imagery z19 / Google 卫星 z18-20（仅用于平面、屋顶色与阴影/倾斜估高）",
+  "https://nedl.swjtu.edu.cn/__local/9/7E/31/CF116515E377C8A3ED1A8FDB669_35D282A3_45CAC.png（背景）"
+ ],
+ "parts": []
+}

@@ -1,0 +1,18 @@
+# 下载的第三方参考图片/视频帧（体积大且有版权，只保留文字结论）
+data/refs/**/*.jpg
+data/refs/**/*.jpeg
+data/refs/**/*.webp
+data/refs/**/*.gif
+data/refs/**/*.mp4
+data/refs/**/*.html
+data/refs/**/*.htm
+data/refs/**/tiles/
+data/refs/**/gtiles/
+!data/refs/plan_labeled.png
+# 卫星瓦片缓存（可由 tools/sat_fetch.py 重新下载）
+data/sat/tiles/
+data/sat/landcover.png
+# 大文件成品
+*.mp4
+node_modules/
+__pycache__/

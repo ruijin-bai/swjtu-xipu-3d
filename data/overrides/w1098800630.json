@@ -1,0 +1,32 @@
+{
+  "osm_id": "w1098800630",
+  "name": "1号学生生活服务区",
+  "levels": 2,
+  "height_m": 9,
+  "levels_source": "航拍 BV1HGNUzTEze 帧10 一食堂背后白屋面低层建筑，约2层（低）",
+  "facade": {
+    "main_color": "#d8d6d0",
+    "secondary_color": "#8a8d90",
+    "material": "浅灰白墙",
+    "window_style": "带形窗",
+    "window_color": "#55606a"
+  },
+  "roof": {
+    "type": "平顶",
+    "color": "#e6e3dc",
+    "features": "白色/浅色平屋面，中部有一条深色采光带或设备"
+  },
+  "features": [
+    "二食堂与一食堂之间"
+  ],
+  "confidence": "低",
+  "notes": "",
+  "sources": [
+    "https://www.bilibili.com/video/BV1HGNUzTEze",
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/satD_south.jpg"
+  ],
+  "parts": []
+}

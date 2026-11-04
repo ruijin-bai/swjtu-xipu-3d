@@ -1,0 +1,33 @@
+{
+  "osm_id": "w1098797665",
+  "name": "主体育场西看台（未命名）",
+  "levels": null,
+  "height_m": 22,
+  "levels_source": "航拍 BV1Yv4y1P7Yn 帧44/47/56/57 + so360 航拍照：弧形看台+张拉膜雨棚，高度按看台排数估计（低）",
+  "facade": {
+    "main_color": "#ece6da",
+    "secondary_color": "#c9ced2",
+    "material": "白/米色张拉膜雨棚，浅灰钢桁架；看台座椅红-粉-米-蓝渐变",
+    "window_style": "看台背面为条窗",
+    "window_color": "#6b7780"
+  },
+  "roof": {
+    "type": "张拉膜雨棚（多个锥形膜单元沿弧形排列）",
+    "color": "#eee6d8",
+    "features": "卫星中为一排白色扇形膜单元，伸出看台上方"
+  },
+  "features": [
+    "主体育场西侧弧形主看台，长约250m",
+    "座椅颜色：红、粉、米黄、蓝色块渐变"
+  ],
+  "confidence": "中（形态颜色高，高度低）",
+  "notes": "",
+  "sources": [
+    "https://www.bilibili.com/video/BV1Yv4y1P7Yn (videoshot 帧44,47,56,57)",
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/B_44_57.jpg"
+  ],
+  "parts": []
+}

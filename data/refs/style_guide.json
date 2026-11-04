@@ -1,0 +1,108 @@
+{
+  "_meta": {
+    "campus": "西南交通大学犀浦校区 (成都郫都区犀安路999号)",
+    "method": "地面视角实拍照片 + B站校园漫步视频预览帧(480x270，视频流CDN返回HTTP 567无法下载，改用 videoshot 精灵图)。色值为多张图同类区域中位数(颜色过滤后)，再按阴天/晴天两种光照做人工校正，给出建议的材质基色(albedo)。照片受相机白平衡、滤镜影响，晴天色值偏暖偏饱和，阴天偏灰。",
+    "confidence_scale": "high=多来源一致且清楚可见; medium=2-3个来源或分辨率低; low=推测/单一来源",
+    "date": "2026-11-04",
+    "sample_raw": "/tmp 下采样中间结果未保留；原始图片在 data/refs/style/ 及 data/refs/so360, commons, aerial"
+  },
+  "road": {
+    "asphalt_main": {"hex": "#6e6b68", "range": ["#515151", "#908b81"], "desc": "主干道（含校内主轴犀安路延长段、环路）为中灰沥青，整体偏旧、褪色、略带暖灰；有明显修补块、轮胎印和细裂纹(tm1, f038)。新铺段较深 #515151。雨后湿面 #59574f 并反光。", "confidence": "high"},
+    "asphalt_new_patch": {"hex": "#4f4f50", "desc": "补丁/新罩面段，深灰。可做 decal 打破均匀感。", "confidence": "medium"},
+    "centerline": {"hex": "#d9b24a", "desc": "双黄实线中心线（f038, f122, so360 gate 图），偏暗黄、有磨损。", "confidence": "high"},
+    "edge_lane_marking": {"hex": "#e8e6df", "desc": "白色车道边线/虚线、导向箭头、人行横道斑马线（校门口和主轴交叉口非常醒目、宽且密）。", "confidence": "high"},
+    "curb": {"hex": "#b8b4ac", "desc": "浅灰花岗岩/混凝土路缘石，约15cm高，与人行道齐平处常为平缘石；道路两侧紧贴草带而非连续人行道是常见形态。", "confidence": "medium"},
+    "manhole": {"hex": "#4a4642", "desc": "路面圆形铸铁井盖较多（so360 主轴照片）。", "confidence": "medium"},
+    "layout_note": "主轴为宽阔双向路(含大片空旷柏油广场段)，路边多为 '路缘石-草带(带行道树)-步道' 结构；车流少，路面大面积空旷是典型观感。"
+  },
+  "paving": {
+    "plaza_granite": {"hex": "#a29b96", "range": ["#858c9b", "#c1b5ab"], "desc": "教学楼前广场、图书馆前广场、虹桥周边：浅灰(略暖)花岗岩大板，烧毛面，湿时变 #858c9b 偏蓝灰。", "confidence": "high"},
+    "plaza_band": {"hex": "#77726e", "desc": "大板铺装中夹深灰色条带/分格线（f034 教学楼前、mp2 图书馆前大广场），条带宽约0.6m，间距数米，形成网格或平行带。", "confidence": "medium"},
+    "slab_size": {"value": "约600x300mm 或 600x600mm，错缝(工字/人字未见)直铺", "desc": "照片分辨率不足以准确量尺寸，按常见做法估计；广场整体视觉是均匀浅灰大面。", "confidence": "low"},
+    "footpath": {"hex": "#8d8a86", "desc": "林荫步道多为灰色沥青或灰色水泥砖窄路（r_ss1 改造后步道为沥青面+深灰收边带；f040 为灰色混凝土砖）。", "confidence": "medium"},
+    "bridge_deck_wood": {"hex": "#bfa58f", "desc": "蓝色钢桥桥面中央为木色/暖色铺板带，两侧灰色格栅（f116）。", "confidence": "medium"}
+  },
+  "lawn": {
+    "lawn_spring_autumn": {"hex": "#5f7a3e", "range": ["#48663e", "#799a40"], "desc": "大面积草坪常年偏绿，春秋为中等饱和黄绿；阴天照片 #4f663e，晴天 #738548。草坪边缘常见麦冬类深绿镶边。", "confidence": "high"},
+    "lawn_summer": {"hex": "#4e6a33", "desc": "夏季更深更润。", "confidence": "medium"},
+    "lawn_winter": {"hex": "#7b7a52", "desc": "冬季发黄褐带灰（雪景、冬季照片 c03），但成都草坪不会完全枯黄。", "confidence": "low"},
+    "shrub_hedge": {"hex": "#5d7440", "range": ["#616344", "#85a15d"], "desc": "绿化带灌木为修剪成块/带状的常绿绿篱(海桐、女贞、红叶石楠一类)，色比草坪略深略灰；局部有红叶石楠的新叶红 #a0473a 点缀。", "confidence": "medium"},
+    "flower_bed": {"hex": "#d02a2a", "desc": "校门石和校名石前常摆满红色花坛(一串红/四季海棠)，形成红色地被条带(f002, so360 #3/#7)。", "confidence": "high"}
+  },
+  "trees": {
+    "ginkgo": {"hex_summer": "#6f9440", "hex_autumn": "#c9a43f", "range_autumn": ["#b8833d", "#dab765"], "desc": "银杏是主干道行道树主角：主轴大道（通往仿老校门的轴线）、教学区主路两侧成排银杏，圆锥形/窄卵形树冠，高8-12m，冠径3-5m，株距约5-6m，树干刷白约1.2m。11月中下旬整片金黄，落叶铺满路面(tm2, sh1, bj1, so360 #9)。", "confidence": "high"},
+    "camphor": {"hex": "#4a5a2e", "desc": "香樟：广场、楼前、次要道路两侧的宽圆冠常绿大树（f036, f122），冠浓密暗绿，四季不变，形成林荫。", "confidence": "medium"},
+    "willow": {"hex": "#8a9f5e", "desc": "垂柳：沿湖、河道驳岸成排，黄绿色下垂枝条，是水边最显著元素（c07, c08, mp1, f016）。", "confidence": "high"},
+    "metasequoia": {"hex_summer": "#5f7a3a", "hex_autumn": "#9a5a32", "desc": "水杉：楼侧和水边有窄塔形水杉列植（f040），秋季锈红。", "confidence": "medium"},
+    "plane_tree": {"desc": "未在照片中确认法桐为主要行道树；可能少量存在。不建议作为主树种。", "confidence": "low"},
+    "cherry_magnolia": {"hex": "#e7b8c8", "desc": "春季樱花/玉兰（映像集视频帧中有粉色花树林荫道），为季节点缀。", "confidence": "low"},
+    "trunk_whitewash": {"hex": "#e6e3dc", "desc": "行道树及林下树干普遍刷白（约1.0-1.3m），是地面视角非常显眼的细节（r_ss1, f100, so360 #17）。", "confidence": "high"},
+    "canopy_overall": {"hex": "#5f6e3a", "desc": "全部树冠颜色多源中位数（阴/晴混合），整体是偏黄的中绿而非蓝绿。", "confidence": "medium"}
+  },
+  "water": {
+    "lake_water": {"hex": "#5e6a55", "range": ["#504f4a", "#6b887b"], "desc": "校园中部湖面(图书馆所在的湖)和贯穿校园的河道水色偏橄榄灰绿、混浊不透明；无风时强镜面反射(图书馆、3号教学楼倒影是标志性画面)。夏季局部藻绿 #536823。", "confidence": "high"},
+    "water_reflection": {"desc": "渲染时应以高反射低透明为主，菲涅尔反射天空灰白，再叠加少量橄榄绿体积色。", "confidence": "medium"},
+    "bank": {"hex": "#9e9584", "desc": "驳岸以自然草坡入水+垂柳为主，局部为毛石/卵石护坡（f118 低水位时露出灰黄色抛石带），图书馆一侧为混凝土/石砌硬质岸；有亲水平台和栏杆，但木栈道不多。睡莲/荷叶点缀(mp1)。", "confidence": "medium"},
+    "wildlife": {"desc": "湖中有黑天鹅、白天鹅（f126，映像集视频），可作为小细节。", "confidence": "medium"}
+  },
+  "furniture": {
+    "street_lamp_main": {"hex": "#a7a9a8", "desc": "主轴大道：高约8-10m的柱状景观灯，银灰色金属柱身，上部为白色发光柱体、中部有环形装饰节(so360 #17 图)；成排对称布置，非常有辨识度。", "confidence": "high"},
+    "street_lamp_road": {"hex": "#9da0a2", "desc": "普通道路：单臂高杆路灯（灰色锥形杆，单侧挑臂），杆上常挂红色校庆/宣传竖幅 #c0282d（f038）。", "confidence": "high"},
+    "garden_lamp": {"hex": "#e0e0dc", "desc": "桥头/湖边有白色叶片/弯钩形造型庭院灯（f016）。", "confidence": "low"},
+    "railing_bridge": {"hex": "#c9c5bd", "desc": "湖边与平桥栏杆多为浅灰石材/仿石混凝土栏板（f016）。", "confidence": "medium"},
+    "red_arch_bridge": {"hex": "#b8505a", "desc": "虹桥：红色钢拱桥（双拱，桥两端拱肋落地），是校园标志物，色为偏粉的玫红/朱红，阴天看起来 #c86a72，背光 #682c38。", "confidence": "high"},
+    "blue_steel_bridge": {"hex": "#3a72a3", "desc": "另一座蓝色钢结构步行桥（拱形侧梁+蓝色钢柱+钢索栏杆，f116/f118）。", "confidence": "high"},
+    "signage": {"hex": "#2f6db3", "desc": "导向牌/展板以蓝色+白色为主（校徽蓝），立在蓝色底座上（f110），楼名为楼体上金属字或灰色石材门牌。", "confidence": "medium"},
+    "bikes": {"hex": "#f2c230", "desc": "楼前、路边大量散停自行车和黄色共享单车/电动车；未见统一样式的车棚照片，车棚可用简单灰色钢结构+透明/灰色顶棚。", "confidence": "low"},
+    "shuttle": {"hex": "#f2f2f0", "desc": "白色校园电瓶观光车在主轴上行驶(tm1)。", "confidence": "medium"},
+    "railway_exhibits": {"desc": "校内有机车展示区：黑色蒸汽机车、绿色/米黄色SS型电力机车(SS 0818)停在铺碎石的短轨道上，旁边有仿站台'平起站'木构站房（f052-f062）。", "confidence": "high"}
+  },
+  "building_palette": {
+    "teaching_lab_brick": {"hex": "#965f55", "range": ["#7b6563", "#aa835e"], "desc": "教学区、实验区、行政楼主色为赭红/砖红面砖（阴天看起来带紫灰的暗粉褐 #966c6b，晴天偏橙 #aa835e）。立面是密集竖向柱网+深色窗格，红砖墙面比例约50%，所以远看整体偏暗。", "confidence": "high"},
+    "trim_concrete": {"hex": "#cfcac2", "desc": "红砖楼常配浅灰/米白混凝土挑檐、阳台板、檐口、底层架空柱(1号教学楼、综合楼、f050)。", "confidence": "high"},
+    "glass": {"hex": "#4f6a80", "desc": "大面积蓝灰玻璃幕墙用于图书馆、部分教学楼连廊和入口(f008-f012)，反射天空。", "confidence": "high"},
+    "library_white": {"hex": "#e3e1dc", "desc": "图书馆(水上图书馆)及若干公共建筑为白/浅灰石材+玻璃，弧形长体量；与红砖教学区形成对比。", "confidence": "high"},
+    "dorm": {"hex": "#d9d5cc", "desc": "宿舍区(天佑斋、鸿哲斋)多为浅灰白/米色涂料墙，局部砖红色线脚或底座；高层宿舍为白灰色板楼(航拍图 aerial/A_sheet1)。", "confidence": "medium"},
+    "gate_red": {"hex": "#8e4a42", "desc": "新校门(主门)为巨大赭红色门框+白色内拱的方形门架，'西南交通大学'金字；色与教学楼砖红呼应但更饱和。", "confidence": "high"},
+    "old_gate_stone": {"hex": "#8c7a6a", "desc": "仿唐山交大老校门(竢实扬华拱门)为灰褐/暖棕石材三拱门，位于主轴尽端(so360 #6, #12, f000)。", "confidence": "high"},
+    "roof": {"hex": "#b5b3ae", "desc": "几乎全为平屋顶，浅灰混凝土/卷材，偶有深灰设备；体育馆、游泳馆为银灰金属曲面屋顶。无坡屋顶瓦。", "confidence": "medium"},
+    "rule": "教学/科研区 = 砖红+浅灰线脚；公共核心(图书馆、体育馆) = 白/银+玻璃；宿舍 = 浅灰白；地标小品 = 高饱和红(虹桥、门框)和校徽蓝(蓝桥、导向牌)。"
+  },
+  "sky_light": {
+    "sky_overcast": {"hex": "#c7c9d3", "desc": "绝大多数非宣传照片为阴天或薄雾天，天空是均匀的冷浅灰/灰白，几乎无云纹，地平线处更亮 #dfe2e6。", "confidence": "high"},
+    "sky_clear": {"hex": "#7fa6d6", "desc": "晴天蓝天+白积云多出现在宣传照/精选照（选择偏差），可作为备选天气。", "confidence": "medium"},
+    "light": {"value": "默认: 漫射光为主，太阳光弱(强度约晴天的30-40%)，阴影柔和不清晰；色温约6500-7000K(偏冷中性)，整体低对比、低饱和，空气中有轻微灰霾使远处建筑偏灰蓝。", "confidence": "high"},
+    "fog": {"hex": "#c9ccd2", "desc": "建议加距离雾，300m外楼宇明显灰化(视频帧中远处高层住宅都是灰白剪影)。", "confidence": "medium"},
+    "backdrop": {"desc": "校园外围天际线为大量白灰色高层住宅(犀浦新城)，从校内多处可见，做远景剪影可增强真实感。", "confidence": "high"}
+  },
+  "signature": [
+    {"rank": 1, "feature": "砖红(赭红)面砖+浅灰混凝土线脚的方正教学楼群，配一栋18层左右的红砖塔楼(3号教学楼)临湖矗立", "confidence": "high"},
+    {"rank": 2, "feature": "宽阔空旷的主轴大道：旧灰沥青+双黄线、两侧成排刷白树干的银杏、柱状白色景观灯，尽端是仿老校门石拱门；秋季全线金黄", "confidence": "high"},
+    {"rank": 3, "feature": "中央湖面与河道：橄榄灰绿的镜面水、垂柳草坡驳岸，弧形白色图书馆的倒影", "confidence": "high"},
+    {"rank": 4, "feature": "高饱和的点缀色桥梁：红色双拱钢桥'虹桥'和蓝色钢步行桥，加上赭红门框白内拱的新校门", "confidence": "high"},
+    {"rank": 5, "feature": "成都式阴天光照：灰白天空、柔和无影、远处灰白高层住宅剪影；再加铁路特色小品(蒸汽机车/SS电力机车展示轨道)", "confidence": "high"}
+  ],
+  "building_notes": [
+    {"name": "3号教学楼", "observation": "临湖红砖塔楼，约18层(B站视频标题'3号教学楼18层视角')，方正板状，均匀密集方窗格，砖红色，顶部平；旁有4-6层红砖裙楼。", "sources": ["commons/c07.jpg", "commons/c08.jpg", "so360/t043cd9a71473076ede.jpg", "aerial/B_sheet2.jpg", "bilibili av47763529 标题"]},
+    {"name": "图书馆(图书信息交流中心)", "observation": "湖边弧形长体量，约5-6层，白/浅灰外墙+大面积玻璃，屋顶有挑出的白色平板/环形开孔天棚；正面有宽大台阶。", "sources": ["style/so/au2.jpg", "so360/t0469ca0d379690be63.jpg", "style/bili/walk_frames/f082.jpg", "f088.jpg"]},
+    {"name": "1号教学楼", "observation": "红砖墙面配横向浅灰混凝土阳台/遮阳板，竖向楼名'1号教学楼'，约6-7层。", "sources": ["style/bili/walk_frames/f006.jpg"]},
+    {"name": "电气馆(10教)", "observation": "红砖板楼，约7-8层，深色窗格，楼前有银杏/香樟。", "sources": ["style/bili/walk_frames/f074.jpg"]},
+    {"name": "8教(人文学院)", "observation": "红砖楼，约6层，带浅灰底层。", "sources": ["style/bili/walk_frames/f094.jpg"]},
+    {"name": "9教(信息学院)", "observation": "入口为米白石材门廊/架空大门洞，可见楼前散停自行车。", "sources": ["style/bili/walk_frames/f092.jpg"]},
+    {"name": "综合楼", "observation": "红砖墙+顶部浅灰混凝土挑檐框架，楼身横向带窗，约6-7层，墙上'综合楼'字样。", "sources": ["style/bili/walk_frames/f078.jpg"]},
+    {"name": "机械馆外实验室", "observation": "砖红色低层(3-4层)实验楼。", "sources": ["style/bili/walk_frames/f070.jpg"]},
+    {"name": "工程训练中心", "observation": "砖红色多层楼，墙上竖向'工程训练中心'字样，约5-6层。", "sources": ["style/bili/walk_frames/f066.jpg"]},
+    {"name": "体育馆", "observation": "银灰色金属曲面屋顶的椭圆形场馆，底部玻璃+浅色。", "sources": ["style/bili/walk_frames/f104.jpg", "aerial/B_sheet2.jpg"]},
+    {"name": "新校门(西南交通大学校门)", "observation": "巨型赭红色方形门架，内嵌白色半圆拱，上方金色'西南交通大学'，门前宽斑马线广场。", "sources": ["so360/t04eb12bc0b67294a95.jpg", "so360/t04fc388b76793a1a3c.jpg", "so360/t045818ecf94d7d1f99.jpg"]},
+    {"name": "仿老校门(竢实扬华门)", "observation": "灰褐石材三拱门，中拱高大，顶部牌匾，位于主轴大道尽端。", "sources": ["so360/t042b31d4fb8566e91e.jpg", "so360/t046def925c13c8328f.jpg", "style/bili/walk_frames/f000.jpg"]}
+  ],
+  "sources": [
+    {"id": "bili_walk", "desc": "B站 BV1hF411c7uP《毕业生带你逛西南交大犀浦校区》videoshot 预览帧 138 张(480x270，夏季阴天为主)", "path": "data/refs/style/bili/walk_frames/", "weight": "主依据(地面视角、非宣传滤镜)"},
+    {"id": "bili_reel", "desc": "B站 BV1Xe411s7q4《西南交通大学犀浦校区2016-2020年映像集》预览精灵图(160x90，四季)", "path": "data/refs/style/bili/reel_sp1.jpg"},
+    {"id": "so360_style", "desc": "360图片搜索：搜狐/百家号/美篇/抖音图文/思政网(校园改造)/微博/pconline 的校园实拍", "path": "data/refs/style/so/"},
+    {"id": "so360_prev", "desc": "前序任务已下载的 360 搜索图(校门、主轴大道、虹桥、图书馆)", "path": "data/refs/so360/"},
+    {"id": "commons", "desc": "Wikimedia Commons Category:Southwest Jiaotong University (前序已下载)", "path": "data/refs/commons/"},
+    {"id": "aerial", "desc": "航拍视频抽帧(用于屋顶/宿舍色调)", "path": "data/refs/aerial/"},
+    {"id": "skipped", "desc": "小红书/抖音需要登录未直接访问；B站视频流 CDN 返回 HTTP 567 无法下载"}
+  ]
+}

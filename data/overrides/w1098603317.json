@@ -1,0 +1,28 @@
+{
+ "osm_id": "w1098603317",
+ "name": "东区多跨实验厂房（未命名）",
+ "levels": null,
+ "height_m": 14,
+ "levels_source": "航拍 BV1HGNUzTEze 2:14-2:31 比例估计，低于北侧红墙厂房",
+ "facade": {
+  "main_color": "#c4c8c6",
+  "secondary_color": "#5c6257",
+  "material": "银灰/浅灰色金属墙板",
+  "window_style": "高侧窗（各跨山墙上部条窗）"
+ },
+ "roof": {
+  "type": "多跨双坡金属屋面（锯齿状并列）",
+  "color": "#b8bcba",
+  "features": "约4-5跨平行的浅灰色双坡屋面，跨间有天沟与高侧采光窗，俯视呈条纹状"
+ },
+ "features": [
+  "与北侧红墙L形厂房相连成组，屋面呈多道平行条纹"
+ ],
+ "confidence": "中",
+ "notes": "名称不详。",
+ "sources": [
+  "https://www.bilibili.com/video/BV1HGNUzTEze 2:14-2:31（第24-27帧）",
+  "Esri World Imagery z19 / Google 卫星 z18-20（仅用于平面、屋顶色与阴影/倾斜估高）"
+ ],
+ "parts": []
+}

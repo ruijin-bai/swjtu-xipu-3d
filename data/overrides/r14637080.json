@@ -1,0 +1,29 @@
+{
+ "osm_id": "r14637080",
+ "name": "6号教学楼",
+ "levels": 5,
+ "height_m": 22,
+ "levels_source": "航拍 BV1HGNUzTEze 1:57-2:03（第21-22帧，从西南向东北看，位于1号楼东北侧的围合式红砖楼）按窗行估约5层",
+ "facade": {
+  "main_color": "#8e4f45",
+  "secondary_color": "#3f5b55",
+  "material": "暗红褐色面砖，转角/楼梯间为深绿灰色玻璃幕墙竖条",
+  "window_style": "方窗（成排规则方格窗）"
+ },
+ "roof": {
+  "type": "平顶",
+  "color": "#cdc6b8",
+  "features": "浅米灰色平屋面，中央方形内院（平面近似梯形「口」字）"
+ },
+ "features": [
+  "四面围合、中间内院",
+  "东北角/东南角转角有深色玻璃竖向体块"
+ ],
+ "confidence": "低",
+ "notes": "仅从航拍缩略图（480×270）远景判断，细节不足；该镜头字幕为「交通隧道工程…实验中心」，但字幕未必对应此楼。",
+ "sources": [
+  "https://www.bilibili.com/video/BV1HGNUzTEze 1:57-2:03（第21-22帧）",
+  "Esri World Imagery z19 / Google 卫星 z18-20（仅用于平面、屋顶色与阴影/倾斜估高）"
+ ],
+ "parts": []
+}

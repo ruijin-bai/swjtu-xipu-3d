@@ -1,0 +1,33 @@
+{
+  "osm_id": "w1098800631",
+  "name": "一食堂（黍园）",
+  "levels": 3,
+  "height_m": 14,
+  "levels_source": "航拍 BV1HGNUzTEze 帧10 目测约3层（中）",
+  "facade": {
+    "main_color": "#7c4a40",
+    "secondary_color": "#8a8d90",
+    "material": "砖红色墙体+深灰玻璃幕墙入口",
+    "window_style": "大面玻璃+带形窗",
+    "window_color": "#4e5860"
+  },
+  "roof": {
+    "type": "平顶",
+    "color": "#79756b",
+    "features": "深灰平屋面，东侧略有错层"
+  },
+  "features": [
+    "位于天佑斋1/2号楼与西侧道路之间，东侧为铺装广场"
+  ],
+  "confidence": "中",
+  "notes": "",
+  "sources": [
+    "https://www.bilibili.com/video/BV1HGNUzTEze (videoshot 帧10)",
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/A_11_10_12_zoom.jpg",
+    "data/refs/aerial2/south/satD_south.jpg"
+  ],
+  "parts": []
+}

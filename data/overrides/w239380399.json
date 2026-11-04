@@ -1,0 +1,32 @@
+{
+  "osm_id": "w239380399",
+  "name": "天佑斋16号楼",
+  "levels": 6,
+  "height_m": 20.0,
+  "levels_source": "无可用航拍视频画面；卫星斜视(Esri z19)中东南立面投影位移约6m，与中区6层楼相当，推定6层（低）",
+  "facade": {
+    "main_color": "#c9c3b6",
+    "secondary_color": "#a9a49a",
+    "material": "米白/浅米灰色涂料外墙（卫星斜视可见东南立面）",
+    "window_style": "方窗规则网格（横向窗带感）",
+    "window_color": "#5c5f63"
+  },
+  "roof": {
+    "type": "平顶",
+    "color": "#a59d92",
+    "features": "深灰色平屋面（比中区更旧更暗），有少量设备"
+  },
+  "features": [
+    "北区（体育场以北、湖西）板楼/U形围合组团，与中区、南区为不同批次"
+  ],
+  "confidence": "低（屋面形状与颜色中，立面颜色低，层数低）",
+  "notes": "北区天佑斋15-22号楼同一批（轮廓为板楼与U形围合，屋面统一深灰、立面米白）。只看到卫星图，未找到可数窗的航拍，立面与层数均为低置信度。",
+  "sources": [
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/satA_nw.jpg",
+    "data/refs/aerial2/south/satA3.jpg"
+  ],
+  "parts": []
+}

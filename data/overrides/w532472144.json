@@ -1,0 +1,27 @@
+{
+ "osm_id": "w532472144",
+ "name": "机械学院馆外实验室",
+ "levels": null,
+ "height_m": 12,
+ "levels_source": "Google 卫星阴影：与相邻大厅同为约10-13m 的单层大跨实验厂房（阴影约为电气馆的1/3）",
+ "facade": {
+  "main_color": "#8a5a48",
+  "secondary_color": "#dcd6c8",
+  "material": "红褐色砖墙（卫星倾斜仅见墙脚一条，细节不清），浅色金属檐口",
+  "window_style": "高侧窗（推测）"
+ },
+ "roof": {
+  "type": "低坡金属屋面（近平顶）",
+  "color": "#dcd6c8",
+  "features": "浅米白色金属屋面，规则排列的深色条形采光天窗（卫星清晰可见）"
+ },
+ "features": [
+  "北区实验厂房组（26/27/28 同类：白色金属屋面+成排天窗）"
+ ],
+ "confidence": "低",
+ "notes": "只有卫星屋顶依据，没有找到立面照片；墙体颜色为推测性较强的值，三栋按同一批建造处理（同 磁浮试验中心）。",
+ "sources": [
+  "Esri World Imagery z19 / Google 卫星 z18-20（仅用于平面、屋顶色与阴影/倾斜估高）"
+ ],
+ "parts": []
+}

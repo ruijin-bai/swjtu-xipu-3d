@@ -1,0 +1,37 @@
+{
+ "osm_id": "w535892700",
+ "name": "鸿哲斋5号楼",
+ "levels": 14,
+ "height_m": 39.85,
+ "levels_source": "西南交通大学新闻网「犀浦校区四栋研究生公寓项目建设圆满完成」（经搜索摘要）：鸿哲斋4、5、6、7号楼，地上14层，高39.85m，内廊式；2014年4月启动，2015年12月底竣工验收；四栋总建筑面积50632.32m²、2001间、可住4000人",
+ "plan": "十字形（四臂等宽约14-15m，略旋转约10°），与 OSM 轮廓一致",
+ "parts": [],
+ "facade": {
+  "main_color": "#b0b0ae",
+  "secondary_color": "#9e9f9d",
+  "material": "浅灰白色涂料/面砖外墙",
+  "window_style": "小方窗规则网格（每层每间一窗，内廊式宿舍），窗洞较小",
+  "window_color": "#939393"
+ },
+ "roof": {
+  "type": "平顶",
+  "color": "#c7bbb1",
+  "features": "十字中心有升起的楼梯间/电梯机房体块；屋面浅米灰色，有设备"
+ },
+ "features": [
+  "四臂端部山墙中央有一道竖向的深色凹槽/竖条（航拍目测，分辨率低）",
+  "首层有洗衣房（新闻摘要），无可见裙房",
+  "4-7号楼沿西北-东南对角线错位排列，靠近体育馆东南侧与河道"
+ ],
+ "confidence": "中（层数高度高；外观颜色中，来自航拍视频缩略图480x270）",
+ "notes": "套用鸿哲斋7号楼规格（4-7号楼同期建设、轮廓与外观相同）",
+ "sources": [
+  "https://news.swjtu.edu.cn/info/1016/22095.htm",
+  "https://www.bilibili.com/video/BV1HGNUzTEze (航拍帧16-19：四栋十字形高层)",
+  "https://www.zhihu.com/question/326896838/answer/2073373461"
+ ],
+ "local_refs": [
+  "data/refs/aerial/A_hz.jpg",
+  "data/refs/aerial/hz17_zoom.jpg"
+ ]
+}

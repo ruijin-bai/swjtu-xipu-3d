@@ -1,0 +1,33 @@
+{
+  "osm_id": "w207596095",
+  "name": "游泳馆",
+  "levels": null,
+  "height_m": 16,
+  "levels_source": "航拍 BV1Yv4y1P7Yn 帧18/19/41 目测：单层大空间场馆，檐口约9-11m，四坡屋顶起坡后总高估算（低）",
+  "facade": {
+    "main_color": "#dcdcd8",
+    "secondary_color": "#a8b0b5",
+    "material": "白色/浅灰墙面，底层通长玻璃",
+    "window_style": "底层玻璃幕墙+上部带形窗",
+    "window_color": "#6b7780"
+  },
+  "roof": {
+    "type": "四坡/攒尖金属屋面（大坡度）",
+    "color": "#c8c9c8",
+    "features": "浅灰金属板屋面，屋脊汇于中心或短脊；卫星中呈米灰色"
+  },
+  "features": [
+    "位于体育馆南侧，呈扇形环绕体育馆排列，经弧形连廊相连"
+  ],
+  "confidence": "中（形态颜色中，高度低）",
+  "notes": "颜色：航拍与卫星对比，卫星偏暖，取中间值。",
+  "sources": [
+    "https://www.bilibili.com/video/BV1Yv4y1P7Yn (videoshot 帧18,19,41)",
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/B_18_21.jpg",
+    "data/refs/aerial2/south/satB_sports.jpg"
+  ],
+  "parts": []
+}

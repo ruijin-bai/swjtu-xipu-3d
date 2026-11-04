@@ -1,0 +1,29 @@
+{
+ "osm_id": "w1098603316",
+ "name": "东区大型实验厂房（未命名，L形）",
+ "levels": null,
+ "height_m": 18,
+ "levels_source": "航拍 BV1HGNUzTEze 2:08-2:31（第23-27帧）按与相邻建筑比例估高约16-20m（单层大跨厂房）",
+ "facade": {
+  "main_color": "#b5463c",
+  "secondary_color": "#c8ccc9",
+  "material": "红色（砖红/红色涂装板）墙面，檐口下和局部为浅灰色金属墙板带；西端山墙有大门洞",
+  "window_style": "高侧窗/大门洞（工业厂房）"
+ },
+ "roof": {
+  "type": "双坡金属屋面（多跨并列）",
+  "color": "#b4b8b6",
+  "features": "浅灰色金属双坡屋面，长条并列两跨，L形转折；屋脊有采光带"
+ },
+ "features": [
+  "红墙+灰色金属屋面的L形大厂房，位于校园东侧（4号楼以东、东门以南），背后为空地",
+  "南侧紧邻银灰色多跨厂房（未命名 w1098603317）"
+ ],
+ "confidence": "中",
+ "notes": "名称不详（可能为工程训练/轨道交通类实验大厅或新建产学研厂房）；颜色取航拍缩略图中间值。",
+ "sources": [
+  "https://www.bilibili.com/video/BV1HGNUzTEze 2:08-2:31（第23-27帧）",
+  "Esri World Imagery z19 / Google 卫星 z18-20（仅用于平面、屋顶色与阴影/倾斜估高）"
+ ],
+ "parts": []
+}

@@ -1,0 +1,35 @@
+{
+  "osm_id": "w584261708",
+  "name": "鸿哲斋11号楼",
+  "levels": 18,
+  "height_m": 56,
+  "levels_source": "卫星斜视投影位移：塔楼约18m，同一影像中北区6层板楼约6.2m，比值≈2.9 → 约55-58m，推定约18层（低，无航拍数窗）",
+  "facade": {
+    "main_color": "#cbc2b0",
+    "secondary_color": "#8a7c6a",
+    "material": "米黄/浅米色涂料外墙，横向分层线",
+    "window_style": "方窗，立面凹凸错落（点式塔楼多个凸出体块）",
+    "window_color": "#5e6064"
+  },
+  "roof": {
+    "type": "平顶（多级错落）",
+    "color": "#9d9388",
+    "features": "屋顶为多个方形突出体块（楼梯/电梯机房）错落，屋面深褐灰，女儿墙浅色"
+  },
+  "features": [
+    "点式高层塔楼，平面呈锯齿状/多翼错落，四栋沿湖西岸一字排列（西南→东北）",
+    "在卫星图中倾斜位移远大于周边6层宿舍，明显为高层",
+    "校区停车规划图在湖西岸标注“青年教师公寓”，可能即此组"
+  ],
+  "confidence": "低（高层确定；具体层数与颜色低）",
+  "notes": "同一批4栋（轮廓一致620-829m²），外观相同，只核了10号楼，其余同10号。绝非6层：建议至少按高层建模。若能找到更清晰的航拍，应数窗校正层数。",
+  "sources": [
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg",
+    "data/refs/so360/t04dbf85cdd1377c944.jpg (犀浦校区总平面停车图)"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/satA2.jpg",
+    "data/refs/aerial2/south/m37_21.jpg"
+  ],
+  "parts": []
+}

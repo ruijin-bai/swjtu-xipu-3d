@@ -1,0 +1,32 @@
+{
+ "osm_id": "w532472143",
+ "name": "陆地交通地质灾害防治技术国家工程实验室（国家工程研究中心）",
+ "levels": 1,
+ "height_m": 30,
+ "levels_source": "交大设计院项目页：实验大厅长约113m、宽36m、高30m，单层大跨度排架结构（另有油液泵房、控制室等配套附房）；与 OSM 占地4048㎡≈113×36 吻合",
+ "facade": {
+  "main_color": "#d0cfc4",
+  "secondary_color": "#888e8e",
+  "material": "浅灰白色金属/铝板幕墙（大面积实墙，竖向分缝），端部立面有一条通高竖向玻璃/采光带；端墙左侧竖排蓝灰色大字「国家陆地交通地质灾害防治技术工程研究中心」+NELGL标志；底部为灰色卷帘大门+红色横幅位置",
+  "window_style": "大面积实墙+竖向条窗（通高采光带），底部大门"
+ },
+ "roof": {
+  "type": "低坡金属屋面（近平顶）",
+  "color": "#e2e0da",
+  "features": "卫星可见白色屋面被灰色横向构造带分成数段；西南侧附设油液泵房与冷却塔"
+ },
+ "features": [
+  "高30m的巨大灰白色方盒子，是北区最高大的实验大厅",
+  "内有8×10m三向地震模拟振动台、反力墙",
+  "东北侧/背景可见褐色砖高楼（电气馆）"
+ ],
+ "confidence": "中",
+ "notes": "立面颜色取2025-2026年消防演练照片（阴天）中受光面；设计效果图为同样的灰色竖向分格方盒子。",
+ "sources": [
+  "https://www.jiaodadesign.com/jiaoyuwenhua/170.html",
+  "https://nedl.swjtu.edu.cn/__local/9/7E/31/CF116515E377C8A3ED1A8FDB669_35D282A3_45CAC.png",
+  "https://nedl.swjtu.edu.cn/__local/F/0D/FE/7384C4BBF667E4F25BDD0CA067B_E36113CB_3FF72.png",
+  "Esri World Imagery z19 / Google 卫星 z18-20（仅用于平面、屋顶色与阴影/倾斜估高）"
+ ],
+ "parts": []
+}

@@ -1,0 +1,35 @@
+{
+  "osm_id": "w413859256",
+  "name": "天佑斋5号楼",
+  "levels": 6,
+  "height_m": 20.0,
+  "levels_source": "航拍 BV1HGNUzTEze 帧1-3/15/16（约0:05-1:30）数窗约6行（低分辨率，±1层）",
+  "facade": {
+    "main_color": "#b5b3af",
+    "secondary_color": "#9a9894",
+    "material": "浅灰白色面砖/涂料，带成排小阳台栏板",
+    "window_style": "方窗+小阳台规则网格",
+    "window_color": "#5a5f66"
+  },
+  "roof": {
+    "type": "平顶",
+    "color": "#b6afa8",
+    "features": "浅灰平屋面，长条蓝色太阳能热水集热板阵列"
+  },
+  "features": [
+    "南北向长条板楼（中区东缘），屋面有蓝色太阳能集热板阵列；南端山墙有蓝色竖向装饰",
+    "同中区天佑斋5-14号批次：浅灰白色多层板楼/L形楼"
+  ],
+  "confidence": "中（颜色中，层数中）",
+  "notes": "天佑斋5-14号楼为一批（中区，位于体育馆以南、鸿哲斋4-7以西），航拍中统一为浅灰白色带阳台的6层宿舍；其中5号、10号屋顶有蓝色集热板（卫星与航拍均可见）。核验栋：5号、10号、11号附近（帧15/16）；其余同5号。",
+  "sources": [
+    "https://www.bilibili.com/video/BV1HGNUzTEze (videoshot 帧1,2,3,15,16)",
+    "Esri World Imagery z19 瓦片 (server.arcgisonline.com)，本地拼图 data/refs/aerial2/south/sat*.jpg"
+  ],
+  "local_refs": [
+    "data/refs/aerial2/south/A_16_14_zoom.jpg",
+    "data/refs/aerial2/south/A_3_1_zoom.jpg",
+    "data/refs/aerial2/south/satC_mid.jpg"
+  ],
+  "parts": []
+}

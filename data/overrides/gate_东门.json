@@ -1,0 +1,42 @@
+{
+  "osm_id": "n4150911420+n13469658219",
+  "name": "东门",
+  "is_tangshan_replica": false,
+  "position": {
+    "nodes": [
+      {"id": "4150911420", "lat": 30.771786, "lon": 103.9912343, "local_xz": [646.1, -633.1], "note": "入校单行道（向西南偏西）"},
+      {"id": "13469658219", "lat": 30.7716985, "lon": 103.9912939, "local_xz": [651.8, -623.5], "note": "出校单行道（向东）"}
+    ],
+    "center_local_xz": [649.0, -628.3],
+    "osm_note": "两个门节点相距约11m，分别在进、出两条单行车道上"
+  },
+  "orientation": {
+    "front_faces_bearing_deg": 65,
+    "gate_long_axis_vector_xz": [0.51, 0.86],
+    "desc": "门朝东北偏东（朝校外）；两塔墩连线大致沿两门节点连线（北北西-南南东）"
+  },
+  "form": "双塔墩（门柱）式，无横梁连接：两座独立的方形石砌塔墩分立在车道两侧，中间绿岛上立一块横长的红色花岗岩校名石（“西南交通大學”），绿岛两侧为进/出车道",
+  "pylon": {
+    "count": 2,
+    "shape": "方柱体，顶部有出挑檐口；正面中部为一个半圆拱形浅龛（盲拱，不通行），拱龛两侧各一根贴墙圆柱（每墩正面2根）；檐口下有一圈浮雕饰带（正面和侧面都有），底部有深色石材基座",
+    "height_m_est": 14,
+    "front_width_m_est": 7,
+    "depth_m_est": 7,
+    "spacing_m_est": 24,
+    "size_note": "照片中无可靠比例尺，尺寸为按照片比例（塔墩高:正面宽≈2:1）及两车道节点间距（11m）推测，低可信度"
+  },
+  "stone_sign": {"text": "西南交通大學（金色行书，校名题字体）", "length_m_est": 14, "height_m_est": 2.5, "color": "#8f5e4f", "text_color": "#c9902f", "note": "立于两塔墩之间的草坪绿岛上，前有花带"},
+  "facade": {
+    "main_color": "#b3a99c",
+    "secondary_color": "#7b7264",
+    "material": "米黄/浅灰色石材（塔墩），深灰石材基座，红褐色花岗岩校名石",
+    "window_style": "无窗；正面半圆盲拱龛",
+    "window_color": null
+  },
+  "roof": {"type": "平顶带出挑檐口", "color": "#7c8386", "features": "檐口为深灰色压顶"},
+  "features": ["塔墩檐口下浮雕饰带（人物/图案）", "校名石位于两车道之间的绿岛", "进出分道（OSM 两条单行道）"],
+  "confidence": "中（形式、颜色、文字清楚）/ 低（尺寸、间距无比例尺）",
+  "notes": "Commons File:西南交大犀浦校区东门.jpg 拍摄日期未核实；OSM 两个东门节点于 2026-01 才编辑，若东门近年改建，照片可能不是现状。东门不是仿唐山老校门。另：B 站视频封面中还有一座红褐色框架+白色弧形拱的“西南交通大学”校门（BV1Ko4y1j75x、BV15D4y1m7KC 封面），不是东门也不是南门，未确认是哪个门（可能是西门或北门）。",
+  "sources": ["https://commons.wikimedia.org/wiki/File:西南交大犀浦校区东门.jpg"],
+  "local_refs": ["data/refs/gate/east_s.jpg"]
+}
