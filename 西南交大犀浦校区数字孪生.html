@@ -53,10 +53,11 @@ h3{margin:0 0 8px;font-size:11.5px;font-weight:600;color:var(--muted);letter-spa
 .lb.poi{background:rgba(240,180,76,.9);color:#22180a;border-color:transparent;font-size:11px}
 #help{position:fixed;left:50%;top:16px;transform:translateX(-50%);font-size:12px;color:#fff;background:rgba(0,0,0,.42);padding:6px 12px;border-radius:99px;display:none;white-space:nowrap}
 body.walk #help{display:block}
+#help .mob{display:none} body.touch #help .pc{display:none} body.touch #help .mob{display:inline}
 #joy{position:fixed;left:28px;bottom:96px;width:120px;height:120px;border-radius:50%;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);display:none;touch-action:none}
 #joy b{position:absolute;left:50%;top:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:rgba(255,255,255,.55)}
 body.walk.touch #joy{display:block}
-#credit{position:fixed;right:10px;bottom:6px;font-size:10px;color:rgba(255,255,255,.75);text-shadow:0 1px 2px rgba(0,0,0,.5);pointer-events:none}
+#credit{position:fixed;right:10px;bottom:4px;font-size:10px;color:rgba(255,255,255,.75);text-shadow:0 1px 2px rgba(0,0,0,.5);pointer-events:none}
 #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#9fb8cf;color:#fff;font-size:15px;z-index:9;transition:opacity .6s}
 #mTour{display:none}
 @media (max-width:760px){
@@ -67,7 +68,11 @@ body.walk.touch #joy{display:block}
   #info{left:16px;right:16px;width:auto;top:auto;bottom:80px;max-height:50vh;overflow:auto}
   #sun{width:80px}#sunWrap span{display:none}
   .btn{padding:8px 10px;font-size:12.5px}
-  #help{top:auto;bottom:80px;font-size:11px}
+  #help{top:auto;bottom:84px;font-size:11px}
+  #bar{left:12px;right:12px;transform:none;max-width:none;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;bottom:12px}
+  #bar::-webkit-scrollbar{display:none}
+  #credit{left:16px;right:16px;top:74px;bottom:auto;font-size:9px;text-align:left;opacity:.85}
+  #joy{bottom:132px}
 }
 </style>
 </head>
@@ -101,7 +106,7 @@ body.walk.touch #joy{display:block}
   <div class="src" id="iSrc"></div>
   <button class="btn walkhere" id="iWalk">走到这栋楼前</button>
 </div>
-<div id="help">W A S D / 方向键 移动 · 拖动鼠标环顾 · Shift 加速 · 点“环绕”退出</div>
+<div id="help"><span class="pc">W A S D / 方向键 移动 · 拖动鼠标环顾 · Shift 加速 · 点“环绕”退出</span><span class="mob">左下摇杆移动 · 拖动屏幕环顾 · 点“环绕”退出</span></div>
 <div id="joy"><b></b></div>
 <div id="credit">地图数据 © OpenStreetMap 贡献者 · 影像 © Esri, Maxar, Earthstar Geographics · 层数/外观部分依据公开照片，其余为估算</div>
 
@@ -314,6 +319,7 @@ bMat.onBeforeCompile=sh=>{
     float hh(vec3 p){return fract(sin(dot(p,vec3(12.9898,78.233,37.719)))*43758.5453);}
     float vn(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);float a=hh(vec3(i,1.)),b=hh(vec3(i+vec2(1,0),1.)),c=hh(vec3(i+vec2(0,1),1.)),d=hh(vec3(i+vec2(1,1),1.));return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}`)
    .replace('#include <color_fragment>',`#include <color_fragment>
+    float bidI=floor(vBid+.5);
     float wall=1.-step(.5,abs(vWN.y));
     vec2 tg=normalize(vec2(-vWN.z,vWN.x)+1e-5); float along=dot(vWP.xz,tg);
     float fy=fract(vWP.y/vFh), fl=floor(vWP.y/vFh);
@@ -325,18 +331,21 @@ bMat.onBeforeCompile=sh=>{
                  frame=step(.08,fy)*step(fy,.92)*step(.29,fx)*step(fx,.71)-glass; }
     else if(vWin<2.5){ cellW=1.5; float fx=fract(along/1.5); glass=step(.36,fy)*step(fy,.82); frame=glass*step(fx,.04); glass*=1.-step(fx,.04); }
     else { cellW=1.5; float fx=fract(along/1.5); glass=step(.05,fy)*(1.-step(fx,.035)); frame=(1.-glass)*step(.05,fy); }
-    glass*=wall*(1.-topZone)*step(1.0,vWP.y); frame*=wall*(1.-topZone)*step(1.0,vWP.y);
+    if(fl<.5&&vWin<2.5){ float fx=fract(along/cellW); float door=step(.93,hh(vec3(floor(along/cellW),bidI,7.)));
+      glass=max(glass*0.,step(.22,fy)*step(fy,.86)*step(.16,fx)*step(fx,.84)); if(door>.5){glass=step(.0,fy)*step(fy,.82)*step(.08,fx)*step(fx,.92);}
+      frame=step(.19,fy)*step(fy,.89)*step(.13,fx)*step(fx,.87)-glass; if(door>.5) frame=step(fy,.86)*step(.05,fx)*step(fx,.95)-glass; }
+    glass*=wall*(1.-topZone)*step(fl<.5?.0:1.0,vWP.y); frame*=wall*(1.-topZone)*step(fl<.5?.0:1.0,vWP.y);
     float cellId=floor(along/cellW);
-    float r=hh(vec3(fl,cellId,vBid));
+    float r=hh(vec3(fl,cellId,bidI));
     float dcam=length(vWP-cameraPosition);
     vec3 wc=diffuseColor.rgb*(.94+.08*vn(vec2(along*.35,vWP.y*.35)));
     if(vMat>.5&&vMat<1.5){ // 砖：按砖块轻微色差，远处淡出避免闪烁
       float row=floor(vWP.y/.21); float bk=floor((along+mod(row,2.)*.12)/.24);
-      wc*=1.+(hh(vec3(bk,row,vBid))-.5)*.16*smoothstep(160.,25.,dcam);
+      wc*=1.+(hh(vec3(bk,row,bidI))-.5)*.16*smoothstep(160.,25.,dcam);
       float mort=step(.82,fract(vWP.y/.21))*smoothstep(40.,8.,dcam); wc=mix(wc,vec3(.62,.6,.57),mort*.5);
     }
-    float slab=wall*smoothstep(.0,.03,fy)*(1.-smoothstep(.07,.10,fy));      // 楼板线脚
-    wc=mix(wc,vSec*(.95+.05*vn(vec2(along,vWP.y))),slab*(vMat>.5&&vMat<1.5?.85:.35));
+    float slab=wall*smoothstep(.0,.015,fy)*(1.-smoothstep(.04,.055,fy));    // 楼板线脚（细）
+    wc=mix(wc,vSec*(.95+.05*vn(vec2(along,vWP.y))),slab*(vMat>.5&&vMat<1.5?.55:.3));
     wc=mix(wc,vSec,topZone*wall*.9);                                          // 女儿墙压顶
     wc*=mix(.62,1.,smoothstep(.0,1.0,vWP.y))*mix(.80,1.,smoothstep(0.,6.,vWP.y)*wall+(1.-wall));
     wc*=mix(1.,.9+.12*vn(vWP.xz*.8),1.-wall);
@@ -383,7 +392,7 @@ const blockedB=(x,z)=>{const L=_bg.get(Math.floor(x/40)+','+Math.floor(z/40));re
 /* ============ 树：银杏行道树、水边垂柳、香樟林（依据风格调研） ============ */
 const seasonTrees=[];
 { const Y=new THREE.Vector3(0,1,0), M=new THREE.Matrix4(), q=new THREE.Quaternion(), S=new THREE.Vector3(), P=new THREE.Vector3(), c=new THREE.Color();
-  const lump=(parts,detail)=>{const cp=[],cn=[];parts.forEach(([x,y,z,sx,sy,sz],pi)=>{const g=new THREE.IcosahedronGeometry(1,detail+1).toNonIndexed();const A_=g.attributes.position;for(let i=0;i<A_.count;i++){const v=new THREE.Vector3().fromBufferAttribute(A_,i);const k=1+(hash((v.x*7+v.y*13+v.z*17+pi).toFixed(3))-.5)*.22;const n=new THREE.Vector3(v.x/sx,v.y/sy,v.z/sz).normalize();cn.push(n.x,n.y,n.z);A_.setXYZ(i,v.x*k*sx+x,v.y*k*sy+y,v.z*k*sz+z);}cp.push(...A_.array);});const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(cp,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(cn,3));return g;};
+  const lump=(parts,detail)=>{const cp=[],cn=[];parts.forEach(([x,y,z,sx,sy,sz],pi)=>{const g=new THREE.IcosahedronGeometry(1,detail+1);const A_=g.attributes.position;for(let i=0;i<A_.count;i++){const v=new THREE.Vector3().fromBufferAttribute(A_,i);const k=1+(hash((v.x*7+v.y*13+v.z*17+pi).toFixed(3))-.5)*.22;const n=new THREE.Vector3(v.x/sx,v.y/sy,v.z/sz).normalize();cn.push(n.x,n.y,n.z);A_.setXYZ(i,v.x*k*sx+x,v.y*k*sy+y,v.z*k*sz+z);}cp.push(...A_.array);});const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(cp,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(cn,3));return g;};
   const GEO={
     ginkgo:lump([[0,1.0,0,.55,.9,.55],[0,1.55,0,.42,.6,.42],[0,.55,0,.62,.55,.62]],0),          // 锥形
     willow:lump([[0,.95,0,.9,.55,.9],[.3,.55,.2,.6,.6,.55],[-.35,.5,-.2,.55,.65,.6]],0),        // 下垂宽冠
@@ -444,6 +453,14 @@ paintTrees();
   const pole=new THREE.CylinderGeometry(.07,.12,8,8).translate(0,4,0), arm=new THREE.BoxGeometry(.08,.08,1.8).translate(0,7.9,.85), head=new THREE.BoxGeometry(.35,.12,.6).translate(0,7.85,1.7);
   const mk=(g,m,list,f)=>{const im=new THREE.InstancedMesh(g,m,Math.max(1,list.length));const M=new THREE.Matrix4(),q=new THREE.Quaternion(),Y=new THREE.Vector3(0,1,0);list.forEach((p,i)=>{q.setFromAxisAngle(Y,p[2]||0);M.compose(new THREE.Vector3(p[0],0,p[1]),q,new THREE.Vector3(1,1,1));im.setMatrixAt(i,M);});im.count=list.length;im.castShadow=true;scene.add(im);return im;};
   mk(pole,grey,poles); mk(arm,grey,poles);
+  { // 路灯地面光晕（夜间）
+    const gl=canvasTex(128,(x,s)=>{const g=x.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);g.addColorStop(0,'rgba(255,214,150,1)');g.addColorStop(.35,'rgba(255,190,120,.45)');g.addColorStop(1,'rgba(255,170,90,0)');x.fillStyle=g;x.fillRect(0,0,s,s);});
+    gl.wrapS=gl.wrapT=THREE.ClampToEdgeWrapping; gl.repeat.set(1,1);
+    const pg=new THREE.PlaneGeometry(1,1).rotateX(-Math.PI/2);
+    const pm=new THREE.MeshBasicMaterial({map:gl,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending,fog:false});
+    const all=[...poles.map(p=>[p[0]+Math.sin(p[2])*1.7,p[1]+Math.cos(p[2])*1.7,16]),...cols.map(c=>[c[0],c[1],11])];
+    const im=new THREE.InstancedMesh(pg,pm,Math.max(1,all.length)); const M=new THREE.Matrix4();
+    all.forEach((a,i)=>{M.makeScale(a[2],1,a[2]);M.setPosition(a[0],.35,a[1]);im.setMatrixAt(i,M);}); im.count=all.length; im.renderOrder=2; scene.add(im); window.lampPools=im; }
   window.lampHeads=mk(head,new THREE.MeshStandardMaterial({color:0xeeeeee,emissive:0xffd59a,emissiveIntensity:0}),poles);
   mk(new THREE.PlaneGeometry(.55,1.9).translate(.32,5.2,0),new THREE.MeshStandardMaterial({color:0xc0282d,side:THREE.DoubleSide,roughness:.8}),banners);
   // 主轴大道柱状景观灯：银灰柱身 + 白色发光灯柱 + 环形装饰节
@@ -629,14 +646,14 @@ function applyTime(h){
   const night=Math.max(0,Math.min(1,(.12-el)/.3)), dusk=Math.max(0,1-Math.abs(el-.08)/.32)*(1-night)*(weather==='overcast'?.35:1);
   const oc=weather==='overcast'?1:0;
   sun.intensity=(el>0?3.0*Math.min(1,el*2.5+.05):0)*(oc?.42:1); sun.shadow.radius=oc?7:1.5; sun.color.copy(C(0xfff3e0)).lerp(C(0xffa25c),dusk*.8);
-  hemi.intensity=(.25+.65*(1-night))*(oc?1.75:1); hemi.color.copy(C(0xdde8f5)).lerp(C(0x46557a),night); hemi.groundColor.copy(C(0x8c8474)).lerp(C(0x1c1f26),night);
+  hemi.intensity=(.25+.65*(1-night))*(oc?1.75:1)+.45*night; hemi.color.copy(C(0xdde8f5)).lerp(C(0x6a7aa6),night); hemi.groundColor.copy(C(0x8c8474)).lerp(C(0x3a3a40),night);
   skyU.uSun.value.copy(dir); skyU.uNight.value=night;
   skyU.uZen.value.copy(oc?C(0xb4bac5):C(0x4f86c6)).lerp(C(0x3b5a8a),dusk*.5).lerp(C(0x060b18),night);
   skyU.uHor.value.copy(oc?C(0xd2d4da):C(0xc9dbea)).lerp(C(0xf2b07e),dusk*.85).lerp(C(0x1b2540),night);
   skyU.uSunC.value.copy(C(0xfff2d6)).lerp(C(0xff9a55),dusk).multiplyScalar(oc?.15:1);
   scene.fog.color.copy(skyU.uHor.value); scene.fog.near=oc?650:1400; scene.fog.far=oc?3600:5200; document.body.style.background='#'+skyU.uHor.value.getHexString();
-  renderer.toneMappingExposure=1.0-.18*night;
-  BU.uNight.value=night; roadMat.emissiveIntensity=walkMat.emissiveIntensity=.1*night;
+  renderer.toneMappingExposure=1.0+.15*night;
+  BU.uNight.value=night; roadMat.emissiveIntensity=walkMat.emissiveIntensity=0; if(window.lampPools) lampPools.material.opacity=.85*night;
   if(window.lampHeads) lampHeads.material.emissiveIntensity=2.5*night; if(window.colLamps) colLamps.material.emissiveIntensity=.05+2.2*night;
   updateEnv();
   const m=Math.round(h*60); document.getElementById('sunT').textContent=String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
